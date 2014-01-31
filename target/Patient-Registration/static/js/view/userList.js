@@ -8,11 +8,6 @@ define([
     var UserListView = Backbone.View.extend({
         el: $('#content'),
 
-        initialize: function() {
-            this.$el.html($.parseHTML(tpl));
-            this.attachEvents();
-        },
-
         attachEvents: function() {
             this.collection.bind('remove', this.remove, this);
         },
@@ -20,9 +15,11 @@ define([
         render: function() {
             var self = this;
 
+            this.$el.html($.parseHTML(tpl));
             _.each(this.collection.toArray(), function (user, i) {
                 self.$el.find('tbody').append((new UserView({model: user})).render().$el);
             });
+            this.attachEvents();
         },
 
         remove: function(model) {

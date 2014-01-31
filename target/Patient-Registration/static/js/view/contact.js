@@ -2,8 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/contact.jsp',
-    'jsrender'
+    'text!templates/contact.jsp'
 ], function($, _, Backbone, tpl) {
     var ContactView = Backbone.View.extend({
         tagName: 'tr',
@@ -23,6 +22,7 @@ define([
         },
 
         change: function() {
+            this.model.collection.trigger('change', this.model);
         },
 
         render: function() {

@@ -35,7 +35,6 @@ public class ContactController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody Contact contact, @PathVariable String id) {
-        Assert.isTrue(contact.getId().equals(id));
         contactRepository.update(contact);
     }
 

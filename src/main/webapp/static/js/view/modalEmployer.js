@@ -7,9 +7,14 @@ define([
     var ModalEmployerView = Backbone.View.extend({
         el: $('#popup-content'),
 
+        initialize: function() {
+            this.isEdit = false;
+            this.renderData = _.bind(this.renderData, this);
+        },
+
         attachEvents: function() {
-            this.$el.off();
             this.$el.on('click', '.save-model', $.proxy( this.saveModel, this ));
+            window.Collections.employer.bind('change', this.change, this);
         },
 
         saveModel: function() {
@@ -19,14 +24,7 @@ define([
                 evt.preventDefault();
                 self.model.set($(this).serializeJSON());
                 console.log(self.model)
-                self.model.save({
-                    success: function() {
-
-                    },
-                    error: function() {
-
-                    }
-                });
+                self.model.save();
                 window.Collections.employer.add(self.model);
             });
         },
@@ -38,9 +36,31 @@ define([
             this.attachEvents();
         },
 
+        renderData: function() {
+            this.$el.find('#popup-form').html(this.template.render({
+                data: this.model.toJSON(),
+                contacts: window.Collections.contact.toJSON()
+            }));
+
+            if (this.isEdit) {
+                this.$el.find('#myModal').modal('show');
+                this.isEdit = false;
+            }
+        },
+
         render: function () {
+            var self = this;
+
             this.template = jsviews.templates(employerTpl);
-            this.$el.html(this.template.render(window.Collections.contact.toJSON()));
+            window.Collections.contact.fetch({
+                success: self.renderData
+            });
+        },
+
+        change: function(model) {
+            this.model = model;
+            this.isEdit = true;
+            this.render();
         }
 
     });

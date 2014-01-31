@@ -13,7 +13,6 @@ define([
         },
 
         index: function() {
-            var topPanel = new TopPanelView();
             var homeView = new HomeView();
 
             $("#popup-content").hide();

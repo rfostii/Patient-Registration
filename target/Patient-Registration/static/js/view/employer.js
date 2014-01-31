@@ -20,6 +20,7 @@ define([
             this.remove();
         },
         change: function() {
+            this.model.collection.trigger('change', this.model);
         },
         render: function() {
             this.$el.html(this.template.render(this.model.toJSON()));

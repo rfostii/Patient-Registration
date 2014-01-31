@@ -29,7 +29,7 @@ public class User {
     private String gender;
 
     @Column
-    private String martitalStatus;
+    private String maritalStatus;
 
     @Column
     private String race;
@@ -96,12 +96,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getMartitalStatus() {
-        return martitalStatus;
+    public String getMaritalStatus() {
+        return maritalStatus;
     }
 
-    public void setMartitalStatus(String martitalStatus) {
-        this.martitalStatus = martitalStatus;
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
     public String getRace() {

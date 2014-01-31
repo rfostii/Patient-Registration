@@ -35,7 +35,6 @@ public class UserController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody User user, @PathVariable String id) {
-        Assert.isTrue(user.getId().equals(id));
         userRepository.update(user);
     }
 

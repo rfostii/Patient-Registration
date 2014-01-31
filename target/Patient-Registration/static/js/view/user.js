@@ -15,12 +15,12 @@ define([
             this.$el.on('click', '.edit', $.proxy( this.change, this ));
             this.$el.on('click', '.remove', $.proxy( this.delete, this ));
         },
-        remove: function() {
+        delete: function() {
             this.model.destroy();
             this.remove();
         },
         change: function() {
-            alert('change')
+            this.model.collection.trigger('change', this.model);
         },
         render: function() {
             this.$el.html(this.template.render(this.model.toJSON()));

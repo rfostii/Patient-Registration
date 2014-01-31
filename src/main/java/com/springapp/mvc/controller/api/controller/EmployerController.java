@@ -37,7 +37,6 @@ public class EmployerController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody Employer employer, @PathVariable String id) {
-        Assert.isTrue(employer.getId().equals(id));
         employerRepository.update(employer);
     }
 

@@ -1,21 +1,33 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'backbone'
 ], function($, _, Backbone){
     var User = Backbone.Model.extend({
         urlRoot: '/api/user/',
         defaults: {
-            firtstName: '',
+            firstName: '',
             lastName: '',
             ssn: '',
             dateBirth: '',
             gender: '',
-            martitalStatus: '',
+            maritalStatus: '',
             race: '',
             religion: '',
             language: '',
-            contact: {}
+            contact: {},
+            employer: {}
+        },
+
+        initialize: function() {
+            this.on('change', this.change);
+        },
+
+        change: function() {
+            this.set({
+                contact: window.Collections.contact.get(this.get('contact')),
+                employer: window.Collections.employer.get(this.get('employer'))
+            });
         }
     });
 

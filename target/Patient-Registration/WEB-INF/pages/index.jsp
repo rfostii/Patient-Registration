@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap-theme.min.css"/>">
     </head>
     <body>
-        <div id="wrapper" style="position: relative; width: 1200px; margin: auto">
+        <div id="wrapper" style="position: relative; width: 1400px; margin: auto">
             <nav class="navbar navbar-default" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -35,9 +35,7 @@
                 </div>
             </nav>
             <div id="popup-content" style="display: none;">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Create New User
-                </button>
+                <button class="btn btn-primary btn-lg open-form" data-toggle="modal" data-target="#myModal"></button>
                 <div id="popup-form">
 
                 </div>

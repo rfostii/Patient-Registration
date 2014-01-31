@@ -7,9 +7,14 @@ define([
     var ModalUserView = Backbone.View.extend({
         el: $('#popup-content'),
 
+        initialize: function() {
+            this.isEdit = false;
+            this.renderData = _.bind(this.renderData, this);
+        },
+
         attachEvents: function() {
-            this.$el.off();
             this.$el.on('click', '.save-model', $.proxy( this.saveModel, this ));
+            window.Collections.user.bind('change', this.change, this);
         },
 
         saveModel: function() {
@@ -18,15 +23,8 @@ define([
             this.$('#myModal').find('form').submit(function(evt) {
                 evt.preventDefault();
                 self.model.set($(this).serializeJSON());
-                console.log(self.model, $(this).serializeJSON())
-                self.model.save({
-                    success: function() {
-
-                    },
-                    error: function() {
-
-                    }
-                });
+                console.log(self.model, $(this).serializeJSON());
+                self.model.save();
                 window.Collections.user.add(self.model);
             });
         },
@@ -38,8 +36,36 @@ define([
             this.attachEvents();
         },
 
-        render: function() {
+        renderData: function() {
+            this.$el.find('#popup-form').html(this.template.render({
+                data: this.model.toJSON(),
+                employers: window.Collections.employer.toJSON(),
+                contacts: window.Collections.contact.toJSON()
+            }));
 
+            if (this.isEdit) {
+                this.$el.find('#myModal').modal('show');
+                this.isEdit = false;
+            }
+        },
+
+        change: function(model) {
+            this.model = model;
+            this.isEdit = true;
+            this.render();
+        },
+
+        render: function() {
+            var self = this;
+
+            this.template = jsviews.templates(userTpl);
+            window.Collections.contact.fetch({
+                success: function() {
+                    window.Collections.employer.fetch({
+                        success: self.renderData
+                    });
+                }
+            });
         }
 
     });
