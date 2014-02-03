@@ -27,6 +27,7 @@ public class ContactRepository {
                 throw e;
             }
         }
+        session.close();
         return contact;
     }
 
@@ -47,18 +48,20 @@ public class ContactRepository {
                 throw e;
             }
         }
+        session.close();
         return contact;
     }
 
-    public Contact findById(String id) {
-        Contact contact = null;
+    public List<Contact> findByQuery(String query) {
+        List<Contact> contacts = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         try {
-            contact = (Contact) session.get(Contact.class, Long.parseLong(id));
+            contacts = (List<Contact>) session.createCriteria(Contact.class).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
-        return contact;
+        session.close();
+        return contacts;
     }
 
     public List<Contact> findAll() {
@@ -69,6 +72,7 @@ public class ContactRepository {
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
+        session.close();
         return contacts;
     }
 
@@ -91,5 +95,6 @@ public class ContactRepository {
                 throw e;
             }
         }
+        session.close();
     }
 }

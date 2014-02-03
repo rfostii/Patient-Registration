@@ -5,27 +5,37 @@ define([
     'collection/userList',
     'view/userList',
     'view/topPanel',
-    'view/modalUser',
+    'view/userForm',
     'model/user'
-], function($, _, Backbone, UserList, UserListView, TopPanelView, ModalUserView, UserModel) {
+], function($, _, Backbone, UserList, UserListView, TopPanelView, userFormView, UserModel) {
     var UserRouter = Backbone.Router.extend({
         routes: {
             "users": "showUserList",
+            "addUser": "addUser",
+            "editUser/:id": "editUser",
             "user": "showUser"
         },
 
         initialize: function() {
-            this.modalUser = new ModalUserView({ model: new UserModel() });
             window.Collections.user = new UserList();
-            this.userListView = new UserListView({
-                collection: window.Collections.user
-            });
+        },
+
+        addUser: function() {
+            this.userForm = new userFormView({ model: new UserModel() });
+            this.userForm.setForm();
+        },
+
+        editUser: function(id) {
+            this.userForm = new userFormView({ model: window.Collections.user.get(id) });
+            this.userForm.setForm();
         },
 
         showUserList: function() {
             var self = this;
 
-            this.modalUser.setForm();
+            this.userListView = new UserListView({
+                collection: window.Collections.user
+            });
             window.Collections.user.fetch({
                 success: function() {
                     self.userListView.render();
@@ -34,7 +44,6 @@ define([
                     console.log('error');
                 }
             });
-            $("#popup-content").show();
         },
 
         showUser: function() {}

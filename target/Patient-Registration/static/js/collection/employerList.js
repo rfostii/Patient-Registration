@@ -3,10 +3,10 @@ define([
     'underscore',
     'backbone',
     'model/employer'
-], function($, _, Backbone, model){
+], function($, _, Backbone, Employer){
     var EmployerList = Backbone.Collection.extend({
         url: '/api/employer/',
-        model: model
+        model: Employer
     });
 
     return EmployerList;

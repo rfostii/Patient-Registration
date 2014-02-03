@@ -1,4 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<a href="#addUser"><button class="btn btn-primary btn-lg">Add New User</button></a>
+<form class="navbar-form navbar-right" role="search">
+    <div class="form-group">
+        <input type="text" class="form-control search-field" placeholder="Search">
+    </div>
+</form>
 <div class="panel panel-default" id="users">
     <div class="panel-heading">Users List</div>
     <table class="table">

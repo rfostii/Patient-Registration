@@ -20,6 +20,7 @@ define([
         },
 
         initialize: function() {
+            this.change = _.bind(this.change, this);
             this.on('change', this.change);
         },
 

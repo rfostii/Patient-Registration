@@ -5,27 +5,37 @@ define([
     'collection/employerList',
     'view/employerList',
     'view/topPanel',
-    'view/modalEmployer',
+    'view/employerForm',
     'model/employer'
-], function($, _, Backbone, EmployerList, EmployerListView, TopPanelView, ModalEmployerView, EmployerModel) {
+], function($, _, Backbone, EmployerList, EmployerListView, TopPanelView, employerFormView, EmployerModel) {
     var EmployerRouter = Backbone.Router.extend({
         routes: {
             "employers": "showEmployerList",
+            "addEmployer": "addEmployer",
+            "editEmployer/:id": "editEmployer",
             "employer": "showEmployer"
         },
 
         initialize: function() {
-            this.modalEmployer = new ModalEmployerView({ model: new EmployerModel() });
             window.Collections.employer = new EmployerList();
-            this.employerListView = new EmployerListView({
-                collection: window.Collections.employer
-            });
+        },
+
+        addEmployer: function() {
+            this.employerForm = new employerFormView({ model: new EmployerModel() });
+            this.employerForm.setForm();
+        },
+
+        editEmployer: function(id) {
+            this.employerForm = new employerFormView({ model: window.Collections.employer.get(id) });
+            this.employerForm.setForm();
         },
 
         showEmployerList: function() {
             var self = this;
 
-            this.modalEmployer.setForm();
+            this.employerListView = new EmployerListView({
+                collection: window.Collections.employer
+            });
             window.Collections.employer.fetch({
                 success: function() {
                     self.employerListView.render();

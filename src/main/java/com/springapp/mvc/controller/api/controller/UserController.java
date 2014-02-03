@@ -21,10 +21,10 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @RequestMapping(value = "{id}",method = RequestMethod.GET ) @ResponseBody
+    @RequestMapping(value = "{query}",method = RequestMethod.GET ) @ResponseBody
 
-    public final User get( @PathVariable( "id" ) final String id ){
-        return this.userRepository.findById(id);
+    public final List<User> get(@PathVariable("query") final String query){
+        return this.userRepository.findByQuery(query);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json") @ResponseStatus(HttpStatus.CREATED) @ResponseBody

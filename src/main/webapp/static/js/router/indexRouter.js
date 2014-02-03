@@ -14,8 +14,6 @@ define([
 
         index: function() {
             var homeView = new HomeView();
-
-            $("#popup-content").hide();
         }
 
     });

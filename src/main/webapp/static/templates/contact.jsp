@@ -6,7 +6,7 @@
 <td>{{>zip}}</td>
 <td>{{>phoneNumber}}</td>
 <td>
-    <a href="#editContact/{{>id}}" class="edit">
+    <a href="#editContact/{{>id}}">
         <img alt="edit" src="<c:url value="/static/img/edit.png"/>">
     </a>
     <a href="#removeContact/{{>id}}" class="remove">

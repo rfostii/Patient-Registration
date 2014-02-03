@@ -7,7 +7,7 @@
 <td>{{>contact.stage}}</td>
 <td>{{>contact.zip}}</td>
 <td>
-    <a href="#editEmployer/{{>id}}" class="edit">
+    <a href="#editEmployer/{{>id}}">
         <img alt="edit" src="<c:url value="/static/img/edit.png"/>">
     </a>
     <a href="#removeEmployer/{{>id}}" class="remove">

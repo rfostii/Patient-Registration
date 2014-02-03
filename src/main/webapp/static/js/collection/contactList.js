@@ -3,10 +3,10 @@ define([
     'underscore',
     'backbone',
     'model/contact'
-], function($, _, Backbone, model){
+], function($, _, Backbone, Contact){
     var ContactList = Backbone.Collection.extend({
         url: '/api/contact/',
-        model: model
+        model: Contact
     });
 
     return ContactList;

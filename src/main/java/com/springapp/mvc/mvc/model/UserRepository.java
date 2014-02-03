@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.Transaction;
 
 
@@ -27,6 +28,7 @@ public class UserRepository {
                 throw e;
             }
         }
+        session.close();
         return user;
     }
 
@@ -47,18 +49,30 @@ public class UserRepository {
                 throw e;
             }
         }
+        session.close();
         return user;
     }
 
-    public User findById(String id) {
-        User user = null;
+    public List<User> findByQuery(String query1) {
+        String isDigit = "\\d+";
+        String containDigit = ".*\\d.*";
+        List<User> users = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
+        StringBuilder sql = new StringBuilder();
+
+        //sql.append("select * from users where firstName like :searchKey or lastName like :searchKey");
+        sql.append("select * from users where firstName ~* :searchKey");
+        String query = "^.\\d+.|5.";
+        System.out.println(query);
         try {
-            user = (User) session.get(User.class, Long.parseLong(id));
+            users = session.createSQLQuery(sql.toString())
+                    .addEntity(User.class)
+                    .setParameter("searchKey", query).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
-        return user;
+        session.close();
+        return users;
     }
 
     public List<User> findAll() {
@@ -69,6 +83,7 @@ public class UserRepository {
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
+        session.close();
         return users;
     }
 
@@ -91,5 +106,6 @@ public class UserRepository {
                 throw e;
             }
         }
+        session.close();
     }
 }

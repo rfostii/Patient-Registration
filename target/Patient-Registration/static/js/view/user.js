@@ -1,31 +1,15 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-    'text!templates/user.jsp',
-    'jsrender'
-], function($, _, Backbone, tpl) {
-    var UserView = Backbone.View.extend({
-        tagName: 'tr',
+    'view/base/baseView',
+    'text!templates/user.jsp'
+], function($, _, BaseView, tpl) {
+    var UserView = BaseView.extend({
         initialize: function() {
+            UserView.__super__.initialize.apply(this);
             this.template = jsviews.templates(tpl);
-            this.attachEvents();
-        },
-        attachEvents: function() {
-            this.$el.on('click', '.edit', $.proxy( this.change, this ));
-            this.$el.on('click', '.remove', $.proxy( this.delete, this ));
-        },
-        delete: function() {
-            this.model.destroy();
-            this.remove();
-        },
-        change: function() {
-            this.model.collection.trigger('change', this.model);
-        },
-        render: function() {
-            this.$el.html(this.template.render(this.model.toJSON()));
-            return this;
         }
     });
+
     return UserView;
 });

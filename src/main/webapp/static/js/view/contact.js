@@ -1,33 +1,13 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
+    'view/base/baseView',
     'text!templates/contact.jsp'
-], function($, _, Backbone, tpl) {
-    var ContactView = Backbone.View.extend({
-        tagName: 'tr',
+], function($, _, BaseView, tpl) {
+    var ContactView = BaseView.extend({
         initialize: function() {
+            ContactView.__super__.initialize.apply(this);
             this.template = jsviews.templates(tpl);
-            this.attachEvents();
-        },
-
-        attachEvents: function() {
-            this.$el.on('click', '.edit', $.proxy( this.change, this ));
-            this.$el.on('click', '.remove', $.proxy( this.delete, this ));
-        },
-
-        delete: function() {
-            this.model.destroy();
-            this.remove();
-        },
-
-        change: function() {
-            this.model.collection.trigger('change', this.model);
-        },
-
-        render: function() {
-            this.$el.html(this.template.render(this.model.toJSON()));
-            return this;
         }
     });
 

@@ -26,6 +26,7 @@ public class EmployerRepository {
                 throw e;
             }
         }
+        session.close();
         return employer;
     }
 
@@ -46,18 +47,20 @@ public class EmployerRepository {
                 throw e;
             }
         }
+        session.close();
         return employer;
     }
 
-    public Employer findById(String id) {
-        Employer employer = null;
+    public List<Employer> findByQuery(String query) {
+        List<Employer> employers = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         try {
-            employer = (Employer) session.get(Employer.class, Long.parseLong(id));
+            employers = (List<Employer>) session.createCriteria(Employer.class).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
-        return employer;
+        session.close();
+        return employers;
     }
 
     public List<Employer> findAll() {
@@ -68,6 +71,7 @@ public class EmployerRepository {
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }
+        session.close();
         return employers;
     }
 
@@ -90,5 +94,6 @@ public class EmployerRepository {
                 throw e;
             }
         }
+        session.close();
     }
 }

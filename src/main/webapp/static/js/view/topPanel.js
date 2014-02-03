@@ -11,12 +11,14 @@ define([
         },
 
         attachEvents: function() {
-            this.$el.on('keyup', '.search-field', $.proxy( this.search, this ));
+            this.$el.on('click', 'a', $.proxy( this.click, this ));
         },
 
-        search: function() {
-            alert('search')
+        click: function(evt) {
+            this.$el.find('li').removeClass('active');
+            $(evt.target).parent().addClass('active');
         }
+
     });
     return TopPanelView;
 });

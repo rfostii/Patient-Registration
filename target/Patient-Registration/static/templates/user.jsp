@@ -5,7 +5,7 @@
 <td>{{>ssn}}</td>
 <td>{{>dateBirth}}</td>
 <td>{{>gender}}</td>
-<td>{{>martitalStatus}}</td>
+<td>{{>maritalStatus}}</td>
 <td>{{>race}}</td>
 <td>{{>religion}}</td>
 <td>{{>language}}</td>
@@ -16,10 +16,10 @@
 <td>{{>contact.phoneNumber}}</td>
 <td>{{>employer.name}}</td>
 <td>
-    <a href="#editContact/{{>id}}" class="edit">
+    <a href="#editUser/{{>id}}" class="edit">
         <img alt="edit" src="<c:url value="/static/img/edit.png"/>">
     </a>
-    <a href="#removeContact/{{>id}}" class="remove">
+    <a href="#removeUser/{{>id}}" class="remove">
         <img alt="remove" src="<c:url value="/static/img/remove.png"/>">
     </a>
 </td>

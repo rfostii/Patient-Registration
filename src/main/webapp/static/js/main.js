@@ -33,5 +33,6 @@ require([
     'app',
     'bootstrap',
     'jsrender',
-    'jqueryJson'
+    'jqueryJson',
+    'less'
 ], function(){});
