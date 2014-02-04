@@ -1,9 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-], function($, _, Backbone){
-    var Employer = Backbone.Model.extend({
+    'model/baseModel'
+], function($, _, BaseModel){
+    var Employer = BaseModel.extend({
         urlRoot: '/api/employer/',
         defaults: {
             name: '',

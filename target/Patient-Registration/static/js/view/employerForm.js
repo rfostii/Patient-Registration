@@ -26,6 +26,7 @@ define([
                 if (!window.Collections.employer.findWhere(self.model)) {
                     window.Collections.employer.add(self.model);
                 }
+                Backbone.history.navigate('employers', {trigger: true});
             });
         },
 

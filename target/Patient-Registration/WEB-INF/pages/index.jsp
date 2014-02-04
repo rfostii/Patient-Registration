@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Patient Registration</title>
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap.min.css"/>">
@@ -10,6 +12,15 @@
     </head>
     <body>
         <div id="wrapper">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Saved!</strong>
+            </div>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Oops! Something wrong, please check entered data</strong>
+            </div>
+            <div class='notifications top-left'></div>
             <nav class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse" id="top-panel">
                     <ul class="nav navbar-nav">

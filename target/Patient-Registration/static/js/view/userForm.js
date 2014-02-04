@@ -19,6 +19,8 @@ define([
                 self.model.set($(this).serializeJSON());
                 self.model.save({
                     success: function() {
+                        $('.alert-success').show();
+                        self.model.view.render();
                         self.undelegateEvents();
                         self.remove();
                     }
@@ -26,6 +28,7 @@ define([
                 if (!window.Collections.user.findWhere(self.model)) {
                     window.Collections.user.add(self.model);
                 }
+                Backbone.history.navigate('users', {trigger: true});
             });
         },
 

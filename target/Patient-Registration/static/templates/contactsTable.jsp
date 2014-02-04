@@ -1,12 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<a href="#addContact"><button class="btn btn-primary btn-lg">Add New Contact</button></a>
-<form class="navbar-form navbar-right" role="search">
+<div id="modal"></div>
+<form class="navbar-form navbar-left" role="search" id="search-form">
     <div class="form-group">
         <input type="text" class="form-control search-field" placeholder="Search">
     </div>
+    <table class="search-result table"></table>
 </form>
 <div class="panel panel-default" id="contacts">
-    <div class="panel-heading">Contacts List</div>
+    <div class="panel-heading">
+        <a href="#addEmployer"><button class="btn btn-primary">Add New Contact</button></a>
+    </div>
     <table class="table">
         <thead>
         <tr>

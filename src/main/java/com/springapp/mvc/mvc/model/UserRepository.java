@@ -53,23 +53,37 @@ public class UserRepository {
         return user;
     }
 
-    public List<User> findByQuery(String query1) {
+    public List<User> findByQuery(String query) {
         String isDigit = "\\d+";
         String containDigit = ".*\\d.*";
         List<User> users = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         StringBuilder sql = new StringBuilder();
 
-        //sql.append("select * from users where firstName like :searchKey or lastName like :searchKey");
-        sql.append("select * from users where firstName ~* :searchKey");
-        String query = "^.\\d+.|5.";
-        System.out.println(query);
-        try {
-            users = session.createSQLQuery(sql.toString())
-                    .addEntity(User.class)
-                    .setParameter("searchKey", query).list();
-        } catch (RuntimeException e) {
-            System.out.println("Error" + e);
+        if (query.matches(isDigit)) {
+            sql.append("select * from users where ssn similar to :searchKey");
+
+            try {
+                users = session.createSQLQuery(sql.toString())
+                        .addEntity(User.class)
+                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+            } catch (RuntimeException e) {
+                System.out.println("Error " + e);
+            }
+        }
+        else {
+            sql.append("select * from users where firstName similar to :searchKey or lastName similar to :searchKey" +
+                    " or gender similar to :searchKey or language similar to :searchKey" +
+                    " or maritalStatus similar to :searchKey or race similar to :searchKey or religion similar to :searchKey"
+            );
+
+            try {
+                users = session.createSQLQuery(sql.toString())
+                        .addEntity(User.class)
+                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+            } catch (RuntimeException e) {
+                System.out.println("Error " + e);
+            }
         }
         session.close();
         return users;

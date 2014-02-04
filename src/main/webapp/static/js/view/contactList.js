@@ -13,24 +13,22 @@ define([
 
             this.$el.html($.parseHTML(tpl));
             _.each(this.collection.toArray(), function (contact, i) {
-                self.$el.find('tbody').append((new ContactView({model: contact})).render().$el);
+                self.$el.find('#contacts tbody').append((new ContactView({model: contact})).render().$el);
             });
             this.attachEvents();
         },
 
-        search: function(evt) {
+        showSearchResult: function() {
             var self = this;
 
-            this.collection.fetch({
-                url: [this.collection.url, $(evt.target).val()].join(''),
-                success: function() {
-                    self.render();
-                }
+            self.$el.find(".search-result").html('');
+            _.each(this.collection.toArray(), function (contact, i) {
+                self.$el.find(".search-result").append((new ContactView({model: contact})).render().$el);
             });
-        },
-
-        remove: function(model) {
-            this.collection.remove(model);
+            if (self.$el.find(".search-result").has('tr').length) {
+                this.$el.find('#modal').show();
+                self.$el.find(".search-result").fadeIn(200);
+            }
         }
 
     });

@@ -1,9 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-], function($, _, Backbone){
-    var Contact = Backbone.Model.extend({
+    'model/baseModel',
+], function($, _, BaseModel){
+    var Contact = BaseModel.extend({
         urlRoot: '/api/contact/',
         defaults: {
             address: '',

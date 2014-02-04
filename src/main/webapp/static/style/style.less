@@ -1,6 +1,21 @@
 .relative{
   position: relative;
 }
+.absolute{
+  position: absolute;
+}
+.fixed{
+  position: fixed;
+}
+.font10{
+  font-size: 10px;
+}
+.left{
+  float: left;
+}
+#wrapper #content #search-form{
+  .relative();
+}
 #wrapper{
   .relative();
   width: 1400px;
@@ -10,4 +25,29 @@
   .relative();
   left: 50%;
   margin-left: -200px;
+}
+.display-none{
+  display: none;
+}
+#wrapper #content #search-form input{
+  margin-top: 0.2em;
+}
+#modal{
+  .fixed();
+  left: 0;
+  top: 0;
+  .display-none();
+  width: 100%;
+  height: 100%;
+}
+#content .search-result{
+  .absolute();
+  .display-none();
+  margin-bottom: 10px;
+  .font10();
+  height: 200px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: auto;
+  background: #fff;
+  color: #000;
 }

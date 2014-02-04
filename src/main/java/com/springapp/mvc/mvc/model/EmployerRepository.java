@@ -21,7 +21,7 @@ public class EmployerRepository {
                 try {
                     tx.rollback();
                 } catch (HibernateException e1) {
-                    System.out.println("Error" + e1);
+                    System.out.println("Error " + e1);
                 }
                 throw e;
             }
@@ -42,7 +42,7 @@ public class EmployerRepository {
                 try {
                     tx.rollback();
                 } catch (HibernateException e1) {
-                    System.out.println("Error" + e1);
+                    System.out.println("Error " + e1);
                 }
                 throw e;
             }
@@ -52,13 +52,20 @@ public class EmployerRepository {
     }
 
     public List<Employer> findByQuery(String query) {
+        StringBuilder sql = new StringBuilder();
         List<Employer> employers = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
+
+        sql.append("select * from Employer where name similar to :searchKey");
+
         try {
-            employers = (List<Employer>) session.createCriteria(Employer.class).list();
+            employers = session.createSQLQuery(sql.toString())
+                    .addEntity(Employer.class)
+                    .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
         } catch (RuntimeException e) {
-            System.out.println("Error" + e);
+            System.out.println("Error " + e);
         }
+
         session.close();
         return employers;
     }

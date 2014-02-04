@@ -53,12 +53,36 @@ public class ContactRepository {
     }
 
     public List<Contact> findByQuery(String query) {
+        String isDigit = "\\d+";
+        String containDigit = ".*\\d.*";
         List<Contact> contacts = null;
+        StringBuilder sql = new StringBuilder();
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
-        try {
-            contacts = (List<Contact>) session.createCriteria(Contact.class).list();
-        } catch (RuntimeException e) {
-            System.out.println("Error" + e);
+
+        if (query.matches(isDigit) || query.matches(containDigit)) {
+            sql.append("select * from Contact where phoneNumber similar to :searchKey " +
+                       " or zip similar to :searchKey" +
+                       " or address similar to :searchKey"
+            );
+
+            try {
+                contacts = session.createSQLQuery(sql.toString())
+                        .addEntity(Contact.class)
+                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+            } catch (RuntimeException e) {
+                System.out.println("Error " + e);
+            }
+        }
+        else {
+            sql.append("select * from Contact where city similar to :searchKey");
+
+            try {
+                contacts = session.createSQLQuery(sql.toString())
+                        .addEntity(Contact.class)
+                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+            } catch (RuntimeException e) {
+                System.out.println("Error " + e);
+            }
         }
         session.close();
         return contacts;

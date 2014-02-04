@@ -36,6 +36,7 @@ define([
             this.userListView = new UserListView({
                 collection: window.Collections.user
             });
+
             window.Collections.user.fetch({
                 success: function() {
                     self.userListView.render();

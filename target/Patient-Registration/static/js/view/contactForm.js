@@ -28,6 +28,7 @@ define([
                 if (!window.Collections.contact.findWhere(self.model)) {
                     window.Collections.contact.add(self.model);
                 }
+                Backbone.history.navigate('contacts', {trigger: true});
             });
         },
 

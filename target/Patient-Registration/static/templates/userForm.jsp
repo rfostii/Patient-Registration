@@ -11,13 +11,13 @@
             <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="{{if data.lastName}}{{>data.lastName}}{{/if}}">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group has-success">
         <label for="ssn" id="ssn" class="col-sm-2 control-label">SSN</label>
         <div class="col-sm-10">
             <input type="text" name="ssn" class="form-control" placeholder="SSN" value="{{if data.ssn}}{{>data.ssn}}{{/if}}">
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group has-error">
         <label for="dateBirth" id="dateBirth" class="col-sm-2 control-label">Date Birth</label>
         <div class="col-sm-10">
             <input type="date" name="dateBirth" class="form-control" placeholder="Date Birth" value="{{if data.dateBirth}}{{>data.dateBirth}}{{/if}}">
