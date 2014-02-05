@@ -35,9 +35,9 @@ public class EmployerController {
         return employerRepository.create(employer);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody Employer employer, @PathVariable String id) {
-        employerRepository.update(employer);
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK) @ResponseBody
+    public Employer update(@RequestBody Employer employer, @PathVariable String id) {
+        return employerRepository.update(employer);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE) @ResponseStatus(HttpStatus.OK)

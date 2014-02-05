@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'collection/userList',
-    'view/userList',
+    'view/user/userList',
     'view/topPanel',
-    'view/userForm',
+    'view/user/userForm',
     'model/user'
 ], function($, _, Backbone, UserList, UserListView, TopPanelView, userFormView, UserModel) {
     var UserRouter = Backbone.Router.extend({
@@ -13,7 +13,7 @@ define([
             "users": "showUserList",
             "addUser": "addUser",
             "editUser/:id": "editUser",
-            "user": "showUser"
+            "user/:id": "showUser"
         },
 
         initialize: function() {
@@ -37,17 +37,21 @@ define([
                 collection: window.Collections.user
             });
 
-            window.Collections.user.fetch({
-                success: function() {
-                    self.userListView.render();
-                },
-                error: function() {
-                    console.log('error');
-                }
-            });
+            if (!window.Collections.user.length) {
+                window.Collections.user.fetch({
+                    success: function() {
+                        self.userListView.render();
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            } else {
+                self.userListView.render();
+            }
         },
 
-        showUser: function() {}
+        showUser: function(id) {}
     });
 
     return UserRouter;

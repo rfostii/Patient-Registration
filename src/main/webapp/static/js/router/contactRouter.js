@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'collection/contactList',
-    'view/contactList',
+    'view/contact/contactList',
     'view/topPanel',
-    'view/contactForm',
+    'view/contact/contactForm',
     'model/contact'
 ], function($, _, Backbone, ContactList, ContactListView, TopPanelView, contactFormView, ContactModel) {
     var ContactRouter = Backbone.Router.extend({
@@ -36,14 +36,19 @@ define([
             this.contactListView = new ContactListView({
                 collection: window.Collections.contact
             });
-            window.Collections.contact.fetch({
-                success: function() {
-                    self.contactListView.render();
-                },
-                error: function() {
-                    console.log('error');
-                }
-            });
+
+            if (!window.Collections.contact.length) {
+                window.Collections.contact.fetch({
+                    success: function() {
+                        self.contactListView.render();
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            } else {
+                self.contactListView.render();
+            }
         },
 
         showContact: function() {}

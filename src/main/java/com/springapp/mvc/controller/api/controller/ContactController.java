@@ -33,9 +33,9 @@ public class ContactController {
         return contactRepository.create(contact);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody Contact contact, @PathVariable String id) {
-        contactRepository.update(contact);
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK) @ResponseBody
+    public Contact update(@RequestBody Contact contact, @PathVariable String id) {
+        return contactRepository.update(contact);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE) @ResponseStatus(HttpStatus.OK)

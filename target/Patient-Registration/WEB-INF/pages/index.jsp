@@ -12,19 +12,17 @@
     </head>
     <body>
         <div id="wrapper">
-            <div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="alert alert-success alert-dismissable display-none">
                 <strong>Saved!</strong>
             </div>
-            <div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <div class="alert alert-danger alert-dismissable display-none">
                 <strong>Oops! Something wrong, please check entered data</strong>
             </div>
             <div class='notifications top-left'></div>
             <nav class="navbar navbar-default" role="navigation">
                 <div class="collapse navbar-collapse" id="top-panel">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a class="navbar-brand" href="#">Patient Registration</a></li>
+                        <li><a class="navbar-brand" href="#">Patient Registration</a></li>
                         <li><a href="#users" data-modal-form="modalUser">Users</a></li>
                         <li><a href="#employers"  data-modal-form="modalEmployer">Employers</a></li>
                         <li><a href="#contacts"  data-modal-form="modalContact">Contacts</a></li>

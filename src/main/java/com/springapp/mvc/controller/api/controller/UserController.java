@@ -29,13 +29,12 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json") @ResponseStatus(HttpStatus.CREATED) @ResponseBody
     public User create(@RequestBody User user) {
-        Assert.notNull(user);
         return userRepository.create(user);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody User user, @PathVariable String id) {
-        userRepository.update(user);
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK) @ResponseBody
+    public User update(@RequestBody User user, @PathVariable String id) {
+        return userRepository.update(user);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE) @ResponseStatus(HttpStatus.OK)

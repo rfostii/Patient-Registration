@@ -3,9 +3,9 @@ define([
     'underscore',
     'backbone',
     'collection/employerList',
-    'view/employerList',
+    'view/employer/employerList',
     'view/topPanel',
-    'view/employerForm',
+    'view/employer/employerForm',
     'model/employer'
 ], function($, _, Backbone, EmployerList, EmployerListView, TopPanelView, employerFormView, EmployerModel) {
     var EmployerRouter = Backbone.Router.extend({
@@ -36,14 +36,19 @@ define([
             this.employerListView = new EmployerListView({
                 collection: window.Collections.employer
             });
-            window.Collections.employer.fetch({
-                success: function() {
-                    self.employerListView.render();
-                },
-                error: function() {
-                    console.log('error');
-                }
-            });
+
+            if (!window.Collections.employer.length) {
+                window.Collections.employer.fetch({
+                    success: function() {
+                        self.employerListView.render();
+                    },
+                    error: function() {
+                        console.log('error');
+                    }
+                });
+            } else {
+                self.employerListView.render();
+            }
             $("#popup-content").show();
         },
 

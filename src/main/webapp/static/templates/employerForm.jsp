@@ -1,7 +1,8 @@
 <form class="form-horizontal" role="form">
-    <div class="form-group">
+    <div class="form-group name">
         <label for="name" id="name" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10">
+            <div class="help-block error"></div>
             <input type="text" name="name" class="form-control" placeholder="Name" value="{{if data.name}}{{>data.name}}{{/if}}">
         </div>
     </div>

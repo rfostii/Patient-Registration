@@ -5,6 +5,7 @@ require.config({
         underscore: '../frameworks/underscore',
         backbone: '../frameworks/backbone',
         jsrender: '../frameworks/jsrender',
+        mask: '../frameworks/mask',
         less: '../frameworks/less',
         bootstrap: '../frameworks/bootstrap/dist/js/bootstrap',
         jqueryJson: '../frameworks/jqueryJson',
@@ -22,9 +23,11 @@ require.config({
             deps: ["jquery"],
             exports: "bootstrap"
         },
+        mask: {
+            deps: ["jquery"]
+        },
         jqueryJson: {
-            deps: ["jquery"],
-            exports: "jqueryJson"
+            deps: ["jquery"]
         }
     }
 });
@@ -34,5 +37,6 @@ require([
     'bootstrap',
     'jsrender',
     'jqueryJson',
-    'less'
+    'less',
+    'mask'
 ], function(){});

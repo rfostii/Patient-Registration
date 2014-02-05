@@ -8,9 +8,9 @@
 </form>
 <div class="panel panel-default" id="contacts">
     <div class="panel-heading">
-        <a href="#addEmployer"><button class="btn btn-primary">Add New Contact</button></a>
+        <a href="#addContact"><button class="btn btn-primary">Add New Contact</button></a>
     </div>
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>#</th>

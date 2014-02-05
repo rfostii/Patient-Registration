@@ -2,9 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'view/contact',
     'text!templates/home.jsp'
-], function($, _, Backbone, ContactView, tpl) {
+], function($, _, Backbone, tpl) {
     var HomeView = Backbone.View.extend({
         el: $('#content'),
 

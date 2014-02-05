@@ -8,6 +8,7 @@ define([
 
         initialize: function() {
             this.attachEvents();
+            this.$('a[href=' + window.location.hash + ']').parent().addClass('active');
         },
 
         attachEvents: function() {
@@ -16,7 +17,7 @@ define([
 
         click: function(evt) {
             this.$el.find('li').removeClass('active');
-            $(evt.target).parent().addClass('active');
+            this.$(evt.target).parent().addClass('active');
         }
 
     });

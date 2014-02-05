@@ -10,7 +10,7 @@
     <div class="panel-heading">
         <a href="#addEmployer"><button class="btn btn-primary">Add New Employer</button></a>
     </div>
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>#</th>
