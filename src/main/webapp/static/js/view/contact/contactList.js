@@ -4,9 +4,23 @@ define([
     'backbone',
     'view/base/baseListView',
     'view/contact/contact',
-    'text!templates/contactsTable.jsp'
-], function($, _, Backbone, BaseListView, ContactView, tpl) {
+    'collection/contactList',
+    'text!templates/contactsTable.jsp',
+    'text!templates/contactDetail.jsp'
+], function($, _, Backbone, BaseListView, ContactView, ContactList, tpl, detailTpl) {
     var ContactListView = BaseListView.extend({
+
+        initialize: function() {
+            ContactListView.__super__.initialize.apply(this);
+            this.searchResult = new ContactList();
+        },
+
+        selectFoundItem: function(model) {
+            var detailTemplate = jsviews.templates(detailTpl);
+            this.$el.find('#detail .content').html( detailTemplate.render(model.toJSON()) );
+            this.$el.find('#detail').show();
+            this.hideSearchResult();
+        },
 
         render: function() {
             var self = this;
@@ -22,7 +36,7 @@ define([
             var self = this;
 
             self.$el.find(".search-result").html('');
-            _.each(this.collection.toArray(), function (contact, i) {
+            _.each(this.searchResult.toArray(), function (contact, i) {
                 self.$el.find(".search-result").append((new ContactView({model: contact})).render().$el);
             });
             if (self.$el.find(".search-result").has('tr').length) {

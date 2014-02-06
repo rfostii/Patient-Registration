@@ -7,8 +7,10 @@ define([
         el: $('#top-panel'),
 
         initialize: function() {
+            var path = window.location.hash.split('/')[0];
+
             this.attachEvents();
-            this.$('a[href=' + window.location.hash + ']').parent().addClass('active');
+            this.$('a[href=' + path + ']').parent().addClass('active');
         },
 
         attachEvents: function() {

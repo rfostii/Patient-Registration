@@ -1,8 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="modal"></div>
+<div id="detail">
+    <span class="glyphicon glyphicon-remove close-detail pointer"></span>
+    <div class="header"></div>
+    <div class="content"></div>
+</div>
 <form class="navbar-form navbar-left" role="search" id="search-form">
     <div class="form-group">
-        <input type="text" class="form-control search-field" placeholder="Search">
+        <input type="text" class="form-control search-field" placeholder="Search" value="">
     </div>
     <table class="search-result table"></table>
 </form>
@@ -13,7 +18,6 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>#</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>SSN</th>

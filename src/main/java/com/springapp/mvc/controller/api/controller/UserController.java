@@ -3,7 +3,6 @@ package com.springapp.mvc.controller.api.controller;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 import javax.inject.Inject;
 import org.springframework.web.bind.annotation.*;
 import com.springapp.mvc.mvc.model.User;

@@ -12,6 +12,11 @@ define([
 
         attachEvents: function() {
             this.$el.on('click', '.remove', $.proxy( this.delete, this ));
+            this.$el.on('click', $.proxy( this.click, this ));
+        },
+
+        click: function() {
+            this.model.collection.trigger('selectItem', this.model);
         },
 
         delete: function() {

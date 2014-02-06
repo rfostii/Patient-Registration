@@ -18,6 +18,7 @@ define([
 
         initialize: function() {
             window.Collections.employer = new EmployerList();
+            this.repairFormAfterReload = _.bind(this.repairFormAfterReload, this);
         },
 
         addEmployer: function() {
@@ -26,30 +27,39 @@ define([
         },
 
         editEmployer: function(id) {
+            this.getEmployerDataFromServer({
+                success: this.repairFormAfterReload,
+                args: id
+            });
+        },
+
+        repairFormAfterReload: function(id) {
             this.employerForm = new employerFormView({ model: window.Collections.employer.get(id) });
             this.employerForm.setForm();
         },
 
-        showEmployerList: function() {
-            var self = this;
-
-            this.employerListView = new EmployerListView({
-                collection: window.Collections.employer
-            });
-
+        getEmployerDataFromServer: function(handlers) {
             if (!window.Collections.employer.length) {
                 window.Collections.employer.fetch({
                     success: function() {
-                        self.employerListView.render();
+                        handlers.success(handlers.args);
                     },
                     error: function() {
                         console.log('error');
                     }
                 });
             } else {
-                self.employerListView.render();
+                handlers.success(handlers.args);
             }
-            $("#popup-content").show();
+        },
+
+        showEmployerList: function() {
+            this.employerListView = new EmployerListView({
+                collection: window.Collections.employer
+            });
+            this.getEmployerDataFromServer({
+                success: this.employerListView.render
+            });
         },
 
         showEmployer: function() {

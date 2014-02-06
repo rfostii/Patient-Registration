@@ -61,7 +61,11 @@ public class UserRepository {
         StringBuilder sql = new StringBuilder();
 
         if (query.matches(isDigit)) {
-            sql.append("select * from users where ssn similar to :searchKey");
+            sql.append("select * from users join Contact as contact on contact.id=users.contact_id" +
+                       " and (users.ssn similar to :searchKey" +
+                       " or contact.phoneNumber similar to :searchKey" +
+                       " or contact.zip similar to :searchKey)"
+            );
 
             try {
                 users = session.createSQLQuery(sql.toString())
@@ -72,9 +76,11 @@ public class UserRepository {
             }
         }
         else {
-            sql.append("select * from users where firstName similar to :searchKey or lastName similar to :searchKey" +
+            sql.append("select * from users join Contact as contact on contact.id=users.contact_id and (" +
+                    "firstName similar to :searchKey or lastName similar to :searchKey" +
                     " or gender similar to :searchKey or language similar to :searchKey" +
-                    " or maritalStatus similar to :searchKey or race similar to :searchKey or religion similar to :searchKey"
+                    " or maritalStatus similar to :searchKey or race similar to :searchKey or religion similar to :searchKey" +
+                    " or contact.address similar to :searchKey or contact.city similar to :searchKey)"
             );
 
             try {
@@ -93,7 +99,7 @@ public class UserRepository {
         List<User> users = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         try {
-            users = (List<User>) session.createCriteria(User.class).list();
+            users = (List<User>) session.createCriteria(User.class).setMaxResults(50).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }

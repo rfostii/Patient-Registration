@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<td>{{:#index+1}}:</td>
 <td>{{>name}}</td>
 <td>{{>contact.address}}</td>
 <td>{{>contact.city}}</td>

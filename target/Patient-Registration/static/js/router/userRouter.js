@@ -18,6 +18,7 @@ define([
 
         initialize: function() {
             window.Collections.user = new UserList();
+            this.repairFormAfterReload = _.bind(this.repairFormAfterReload, this);
         },
 
         addUser: function() {
@@ -26,29 +27,41 @@ define([
         },
 
         editUser: function(id) {
+            this.getUserDataFromServer({
+                success: this.repairFormAfterReload,
+                args: id
+            });
+        },
+
+        repairFormAfterReload: function(id) {
             this.userForm = new userFormView({ model: window.Collections.user.get(id) });
             this.userForm.setForm();
         },
 
-        showUserList: function() {
-            var self = this;
-
-            this.userListView = new UserListView({
-                collection: window.Collections.user
-            });
-
+        getUserDataFromServer: function(handlers) {
             if (!window.Collections.user.length) {
                 window.Collections.user.fetch({
                     success: function() {
-                        self.userListView.render();
+                        handlers.success(handlers.args);
                     },
                     error: function() {
                         console.log('error');
                     }
                 });
             } else {
-                self.userListView.render();
+                handlers.success(handlers.args);
             }
+        },
+
+        showUserList: function() {
+
+            this.userListView = new UserListView({
+                collection: window.Collections.user
+            });
+            this.getUserDataFromServer({
+                success: this.userListView.render
+            });
+
         },
 
         showUser: function(id) {}

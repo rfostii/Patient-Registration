@@ -52,11 +52,19 @@ public class EmployerRepository {
     }
 
     public List<Employer> findByQuery(String query) {
+        String isDigit = "\\d+";
+        String containDigit = ".*\\d.*";
         StringBuilder sql = new StringBuilder();
         List<Employer> employers = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
 
-        sql.append("select * from Employer where name similar to :searchKey");
+        if (query.matches(isDigit)) {
+            sql.append("select * from Employer as employer, Contact as contact where address_id=contact.id and (" +
+                    "phoneNumber similar to :searchKey or zip similar to :searchKey)");
+        } else {
+            sql.append("select * from Employer as employer, Contact as contact where address_id=contact.id and (" +
+                    "name similar to :searchKey or address similar to :searchKey or city similar to :searchKey)");
+        }
 
         try {
             employers = session.createSQLQuery(sql.toString())
@@ -74,7 +82,7 @@ public class EmployerRepository {
         List<Employer> employers = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         try {
-            employers = (List<Employer>) session.createCriteria(Employer.class).list();
+            employers = (List<Employer>) session.createCriteria(Employer.class).setMaxResults(50).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }

@@ -18,6 +18,7 @@ define([
 
         initialize: function() {
             window.Collections.contact = new ContactList();
+            this.repairFormAfterReload = _.bind(this.repairFormAfterReload, this);
         },
 
         addContact: function() {
@@ -26,29 +27,39 @@ define([
         },
 
         editContact: function(id) {
+            this.getContactDataFromServer({
+                success: this.repairFormAfterReload,
+                args: id
+            });
+        },
+
+        repairFormAfterReload: function(id) {
             this.contactForm = new contactFormView({ model: window.Collections.contact.get(id) });
             this.contactForm.setForm();
         },
 
-        showContactList: function() {
-            var self = this;
-
-            this.contactListView = new ContactListView({
-                collection: window.Collections.contact
-            });
-
+        getContactDataFromServer: function(handlers) {
             if (!window.Collections.contact.length) {
                 window.Collections.contact.fetch({
                     success: function() {
-                        self.contactListView.render();
+                        handlers.success(handlers.args);
                     },
                     error: function() {
                         console.log('error');
                     }
                 });
             } else {
-                self.contactListView.render();
+                handlers.success(handlers.args);
             }
+        },
+
+        showContactList: function() {
+            this.contactListView = new ContactListView({
+                collection: window.Collections.contact
+            });
+            this.getContactDataFromServer({
+                success: this.contactListView.render
+            });
         },
 
         showContact: function() {}

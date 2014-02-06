@@ -4,9 +4,23 @@ define([
     'backbone',
     'view/base/baseListView',
     'view/employer/employer',
-    'text!templates/employersTable.jsp'
-], function($, _, Backbone, BaseListView, EmployerView, tpl) {
+    'collection/employerList',
+    'text!templates/employersTable.jsp',
+    'text!templates/employerDetail.jsp'
+], function($, _, Backbone, BaseListView, EmployerView, EmployerList, tpl, detailTpl) {
     var EmployerListView = BaseListView.extend({
+
+        initialize: function() {
+            EmployerListView.__super__.initialize.apply(this);
+            this.searchResult = new EmployerList();
+        },
+
+        selectFoundItem: function(model) {
+            var detailTemplate = jsviews.templates(detailTpl);
+            this.$el.find('#detail .content').html( detailTemplate.render(model.toJSON()) );
+            this.$el.find('#detail').show();
+            this.hideSearchResult();
+        },
 
         render: function() {
             var self = this;
@@ -22,7 +36,7 @@ define([
             var self = this;
 
             self.$el.find(".search-result").html('');
-            _.each(this.collection.toArray(), function (employer, i) {
+            _.each(this.searchResult.toArray(), function (employer, i) {
                 self.$el.find(".search-result").append((new EmployerView({model: employer})).render().$el);
             });
             if (self.$el.find(".search-result").has('tr').length) {

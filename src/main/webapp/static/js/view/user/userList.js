@@ -4,9 +4,23 @@ define([
     'backbone',
     'view/base/baseListView',
     'view/user/user',
-    'text!templates/usersTable.jsp'
-], function($, _, Backbone, BaseListView, UserView, tpl) {
+    'collection/userList',
+    'text!templates/usersTable.jsp',
+    'text!templates/userDetail.jsp'
+], function($, _, Backbone, BaseListView, UserView, UserList, tpl, detailTpl) {
     var UserListView = BaseListView.extend({
+
+        initialize: function() {
+            UserListView.__super__.initialize.apply(this);
+            this.searchResult = new UserList();
+        },
+
+        selectFoundItem: function(model) {
+            var detailTemplate = jsviews.templates(detailTpl);
+            this.$el.find('#detail .content').html( detailTemplate.render(model.toJSON()) );
+            this.$el.find('#detail').show();
+            this.hideSearchResult();
+        },
 
         render: function() {
             var self = this;
@@ -22,7 +36,7 @@ define([
             var self = this;
 
             self.$el.find(".search-result").html('');
-            _.each(this.collection.toArray(), function (user, i) {
+            _.each(this.searchResult.toArray(), function (user, i) {
                 self.$el.find(".search-result").append((new UserView({model: user})).render().$el);
             });
             if (self.$el.find(".search-result").has('tr').length) {

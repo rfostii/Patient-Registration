@@ -42,10 +42,10 @@ define([
         },
 
         validation: function(attributes) {
-            if (!attributes.firstName.length || /(.*\d+.*)/.test(attributes.firstName)) {
+            if (!attributes.firstName.length || /(.*\W+.*)|(.*\d+.*)/.test(attributes.firstName)) {
                 this.error.push({name: 'firstName', message: 'Wrong first name'})
             }
-            if (!attributes.lastName.length || /(.*\d+.*)/.test(attributes.lastName)) {
+            if (!attributes.lastName.length || /(.*\W+.*)|(.*\d+.*)/.test(attributes.lastName)) {
                 this.error.push({name: 'lastName', message: 'Wrong first name'})
             }
             if (!attributes.ssn.length || /(.*\D+.*)/.test(attributes.ssn)) {
@@ -54,7 +54,7 @@ define([
             if (!attributes.dateBirth.length) {
                 this.error.push({name: 'dateBirth', message: 'Wrong date birth'})
             }
-            if (!attributes.language.length || /(.*\d+.*)/.test(attributes.language)) {
+            if (!attributes.language.length || /(.*\W+.*)|(.*\d+.*)/.test(attributes.language)) {
                 this.error.push({name: 'language', message: 'Wrong language'})
             }
             return this;
@@ -74,9 +74,9 @@ define([
                             });
                     }
                 });
-            } else {
-                this.renderData();
+                return;
             }
+            this.renderData();
         }
 
     });

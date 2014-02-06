@@ -93,7 +93,7 @@ public class ContactRepository {
         List<Contact> contacts = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
         try {
-            contacts = (List<Contact>) session.createCriteria(Contact.class).list();
+            contacts = (List<Contact>) session.createCriteria(Contact.class).setMaxResults(50).list();
         } catch (RuntimeException e) {
             System.out.println("Error" + e);
         }

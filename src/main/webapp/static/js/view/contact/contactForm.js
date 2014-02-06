@@ -43,7 +43,7 @@ define([
             if (!attributes.city.length || /(.*\d+.*)/.test(attributes.city)) {
                 this.error.push({name: 'city', message: 'Wrong city Name'})
             }
-            if (!attributes.stage.length || /(.*\d+.*)/.test(attributes.stage)) {
+            if (!attributes.stage.length || /(.*\D+.*)/.test(attributes.stage)) {
                 this.error.push({name: 'stage', message: 'Wrong Stage'})
             }
             if (!attributes.zip.length || attributes.zip.length < 5) {
