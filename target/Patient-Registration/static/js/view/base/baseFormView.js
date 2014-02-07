@@ -19,6 +19,8 @@ define([
             $('.alert-success').fadeIn().fadeOut(2000);
         },
 
+        saveModel: function() {},
+
         saveError: function() {
             $('.alert-danger').fadeIn().fadeOut(2000);
         },

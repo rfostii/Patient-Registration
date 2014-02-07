@@ -1,28 +1,15 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
+    'backbone',
 ], function($, _, Backbone) {
     var BaseView = Backbone.View.extend({
-        tagName: 'tr',
 
         initialize: function() {
             this.attachEvents();
         },
 
-        attachEvents: function() {
-            this.$el.on('click', '.remove', $.proxy( this.delete, this ));
-            this.$el.on('click', $.proxy( this.click, this ));
-        },
-
-        click: function() {
-            this.model.collection.trigger('selectItem', this.model);
-        },
-
-        delete: function() {
-            this.model.destroy();
-            this.remove();
-        },
+        attachEvents: function() {},
 
         backlightRender: function(query) {
             var markedData = JSON.stringify(this.model.toJSON());

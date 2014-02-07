@@ -2,20 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'router/indexRouter',
-    'router/employerRouter',
-    'router/contactRouter',
-    'router/userRouter',
-    'view/topPanel'
-], function($, _, Backbone, IndexRouter, EmployerRouter, ContactRouter, UserRouter, TopPanelView) {
+    'Router'
+], function($, _, Backbone, Router) {
     (function(){
-        window.Collections = {};
-
-        var topPanel = new TopPanelView();
-        var indexRouter = new IndexRouter();
-        var employerRouter = new EmployerRouter();
-        var contactRouter = new ContactRouter();
-        var userRouter = new UserRouter();
+        window.RegistrationApp = {
+            Collection: {}
+        };
+        new Router();
 
         Backbone.history.start();
     })();

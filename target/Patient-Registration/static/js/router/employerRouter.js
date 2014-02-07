@@ -4,10 +4,9 @@ define([
     'backbone',
     'collection/employerList',
     'view/employer/employerList',
-    'view/topPanel',
     'view/employer/employerForm',
     'model/employer'
-], function($, _, Backbone, EmployerList, EmployerListView, TopPanelView, employerFormView, EmployerModel) {
+], function($, _, Backbone, EmployerList, EmployerListView, employerFormView, EmployerModel) {
     var EmployerRouter = Backbone.Router.extend({
         routes: {
             "employers": "showEmployerList",

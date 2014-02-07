@@ -4,10 +4,9 @@ define([
     'backbone',
     'collection/contactList',
     'view/contact/contactList',
-    'view/topPanel',
     'view/contact/contactForm',
     'model/contact'
-], function($, _, Backbone, ContactList, ContactListView, TopPanelView, contactFormView, ContactModel) {
+], function($, _, Backbone, ContactList, ContactListView, contactFormView, ContactModel) {
     var ContactRouter = Backbone.Router.extend({
         routes: {
             "contacts": "showContactList",
