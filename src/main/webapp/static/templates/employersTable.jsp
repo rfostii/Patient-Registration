@@ -5,6 +5,7 @@
     <div class="header"></div>
     <div class="content"></div>
 </div>
+<img alt="Loading..." class="display-none loading-indicator" src="<c:url value="/static/img/loading-indicator.gif"/>">
 <form class="navbar-form navbar-left" role="search" id="search-form">
     <div class="form-group">
         <input type="text" class="form-control search-field" placeholder="Search" value="">

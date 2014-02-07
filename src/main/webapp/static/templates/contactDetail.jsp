@@ -1,16 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<td>{{>address}}</td>
-<td>{{>city}}</td>
-<td>{{>stage}}</td>
-<td>{{>zip}}</td>
-<td>{{>phoneNumber}}</td>
-<td>
-    <a href="#editContact/{{>id}}">
-        <img alt="edit" src="<c:url value="/static/img/edit.png"/>">
-    </a>
-    <a href="#removeContact/{{>id}}" class="remove">
-        <img alt="remove" src="<c:url value="/static/img/remove.png"/>">
-    </a>
-</td>
+<ul class="list-group">
+    <li class="list-group-item active"><p>Contact Data</p></li>
+    <li class="list-group-item"><strong>Address:</strong> {{>address}}</li>
+    <li class="list-group-item"><strong>City:</strong> {{>city}}</li>
+    <li class="list-group-item"><strong>Stage:</strong> {{>stage}}</li>
+    <li class="list-group-item"><strong>Zip:</strong> {{>zip}}</li>
+    <li class="list-group-item"><strong>Phone Number:</strong> {{>phoneNumber}}</li>
+    <li class="list-group-item"><strong>Zip:</strong> {{>zip}}</li>
+</ul>
+
 
 

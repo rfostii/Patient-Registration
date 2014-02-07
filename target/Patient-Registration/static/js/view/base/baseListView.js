@@ -7,7 +7,6 @@ define([
         el: $('#content'),
 
         initialize: function() {
-            this.makeRequest = false;
             this.render = _.bind( this.render, this );
             this.getData = _.bind( this.getData, this );
         },
@@ -17,11 +16,12 @@ define([
             this.$el.on("click", ".close-detail", $.proxy( this.hideDetail, this ));
             this.$el.on('click', '#modal', $.proxy( this.hideSearchResult, this ));
             this.collection.unbind().bind('add', this.render, this);
-            this.collection.bind('selectItem', this.selectFoundItem, this);
+            this.collection.bind('selectItem', this.selectItem, this);
+            this.searchResult.bind('selectItem', this.selectItem, this);
             this.collection.bind('remove', this.remove, this);
         },
 
-        selectFoundItem: function() {},
+        selectItem: function() {},
 
         render: function() {},
 
@@ -40,8 +40,8 @@ define([
             this.searchResult.fetch({
                 url: [this.searchResult.url, query].join(''),
                 success: function() {
-                    self.showSearchResult.apply(self);
-                    self.makeRequest = false;
+                    self.$('.loading-indicator').hide();
+                    self.showSearchResult.call(self, query);
                 }
             });
         },
@@ -52,9 +52,10 @@ define([
 
             this.$el.find(".search-result").html('').hide();
 
-            if (query.length < 3 || this.makeRequest) return false;
+            if (query.length < 3) return false;
 
-            this.makeRequest = setTimeout(function() {
+            this.$('.loading-indicator').show();
+            setTimeout(function() {
                 self.getData(query);
             }, 300);
         },

@@ -15,7 +15,7 @@ define([
             this.searchResult = new EmployerList();
         },
 
-        selectFoundItem: function(model) {
+        selectItem: function(model) {
             var detailTemplate = jsviews.templates(detailTpl);
             this.$el.find('#detail .content').html( detailTemplate.render(model.toJSON()) );
             this.$el.find('#detail').show();
@@ -32,12 +32,12 @@ define([
             this.attachEvents();
         },
 
-        showSearchResult: function() {
+        showSearchResult: function(query) {
             var self = this;
 
             self.$el.find(".search-result").html('');
             _.each(this.searchResult.toArray(), function (employer, i) {
-                self.$el.find(".search-result").append((new EmployerView({model: employer})).render().$el);
+                self.$el.find(".search-result").append((new EmployerView({model: employer})).backlightRender(query).$el);
             });
             if (self.$el.find(".search-result").has('tr').length) {
                 this.$el.find('#modal').show();

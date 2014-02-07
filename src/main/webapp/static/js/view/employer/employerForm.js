@@ -28,7 +28,7 @@ define([
         },
 
         validation: function(attributes) {
-            if (!attributes.name.length || /(.*\W+.*)|(.*\d+.*)/.test(attributes.name)) {
+            if (!attributes.name.length || /(.*\d+.*)/.test(attributes.name)) {
                 this.error.push({name: 'name', message: 'Wrong Name'})
             }
             return this;
