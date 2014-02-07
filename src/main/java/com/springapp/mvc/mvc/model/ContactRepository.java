@@ -64,27 +64,19 @@ public class ContactRepository {
                        " or zip similar to :searchKey" +
                        " or address similar to :searchKey"
             );
-
-            try {
-                contacts = session.createSQLQuery(sql.toString())
-                        .addEntity(Contact.class)
-                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
-            } catch (RuntimeException e) {
-                System.out.println("Error " + e);
-            }
-        }
-        else {
+        } else {
             sql.append("select * from Contact where city similar to :searchKey" +
                        " or address similar to :searchKey");
-
-            try {
-                contacts = session.createSQLQuery(sql.toString())
-                        .addEntity(Contact.class)
-                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
-            } catch (RuntimeException e) {
-                System.out.println("Error " + e);
-            }
         }
+
+        try {
+            contacts = session.createSQLQuery(sql.toString())
+                    .addEntity(Contact.class)
+                    .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+        } catch (RuntimeException e) {
+            System.out.println("Error " + e);
+        }
+
         session.close();
         return contacts;
     }

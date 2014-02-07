@@ -40,8 +40,8 @@ define([
             this.searchResult.fetch({
                 url: [this.searchResult.url, query].join(''),
                 success: function() {
-                    self.$('.loading-indicator').hide();
                     self.showSearchResult.call(self, query);
+                    self.$('.loading-indicator').hide();
                 }
             });
         },

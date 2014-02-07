@@ -12,10 +12,10 @@
     </head>
     <body>
         <div id="wrapper">
-            <div class="alert alert-success alert-dismissable display-none">
+            <div class="alert alert-success display-none absolute">
                 <strong>Saved!</strong>
             </div>
-            <div class="alert alert-danger alert-dismissable display-none">
+            <div class="alert alert-danger display-none absolute">
                 <strong>Oops! Something wrong, please check entered data</strong>
             </div>
             <div class='notifications top-left'></div>

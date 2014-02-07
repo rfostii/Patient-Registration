@@ -53,9 +53,9 @@ define([
             this.template = jsviews.templates(tpl);
 
             window.Collections.contact.length ? this.renderData() :
-                window.Collections.contact.fetch({
-                    success: self.renderData
-                });
+            window.Collections.contact.fetch({
+                success: self.renderData
+            });
         }
 
     });

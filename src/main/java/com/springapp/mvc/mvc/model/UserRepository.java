@@ -66,30 +66,20 @@ public class UserRepository {
                        " or contact.phoneNumber similar to :searchKey" +
                        " or contact.zip similar to :searchKey)"
             );
-
-            try {
-                users = session.createSQLQuery(sql.toString())
-                        .addEntity(User.class)
-                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
-            } catch (RuntimeException e) {
-                System.out.println("Error " + e);
-            }
-        }
-        else {
+        } else {
             sql.append("select * from users join Contact as contact on contact.id=users.contact_id and (" +
                     "firstName similar to :searchKey or lastName similar to :searchKey" +
                     " or gender similar to :searchKey or language similar to :searchKey" +
                     " or maritalStatus similar to :searchKey or race similar to :searchKey or religion similar to :searchKey" +
                     " or contact.address similar to :searchKey or contact.city similar to :searchKey)"
             );
-
-            try {
-                users = session.createSQLQuery(sql.toString())
-                        .addEntity(User.class)
-                        .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
-            } catch (RuntimeException e) {
-                System.out.println("Error " + e);
-            }
+        }
+        try {
+            users = session.createSQLQuery(sql.toString())
+                    .addEntity(User.class)
+                    .setParameter("searchKey", "%(" + query.replace(" ", "|") + ")%").list();
+        } catch (RuntimeException e) {
+            System.out.println("Error " + e);
         }
         session.close();
         return users;

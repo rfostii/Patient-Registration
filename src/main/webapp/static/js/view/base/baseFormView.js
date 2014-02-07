@@ -20,7 +20,7 @@ define([
         },
 
         saveError: function() {
-
+            $('.alert-danger').fadeIn().fadeOut(2000);
         },
 
         attachEvents: function() {
