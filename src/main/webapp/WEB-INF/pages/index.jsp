@@ -18,17 +18,6 @@
             <div class="alert alert-danger display-none absolute">
                 <strong>Oops! Something wrong, please check entered data</strong>
             </div>
-            <div class='notifications top-left'></div>
-            <nav class="navbar navbar-default" role="navigation">
-                <div class="collapse navbar-collapse" id="top-panel">
-                    <ul class="nav navbar-nav">
-                        <li><a class="navbar-brand" href="#">Patient Registration</a></li>
-                        <li><a href="#users" data-modal-form="modalUser">Users</a></li>
-                        <li><a href="#employers"  data-modal-form="modalEmployer">Employers</a></li>
-                        <li><a href="#contacts"  data-modal-form="modalContact">Contacts</a></li>
-                    </ul>
-                </div>
-            </nav>
             <div id="content"></div>
         </div>
         <script type="text/javascript" data-main="<c:url value="/static/js/main.js"/>" src="<c:url value="/static/frameworks/requirejs.js"/>"></script>

@@ -6,6 +6,7 @@
 .alert{
   z-index: 100;
   width: 50em;
+  left: 20%;
 }
 .relative{
   position: relative;
@@ -16,11 +17,17 @@
 .fixed{
   position: fixed;
 }
+.clear{
+  clear: both;
+}
 .font12{
   font-size: 12px;
 }
 .left{
   float: left;
+}
+.right{
+  float: right;
 }
 .error{
   color: @red;
@@ -46,26 +53,8 @@
   width: 100em;
   margin: auto;
 }
-#wrapper{
-  #content{
-    #logo{
-      .relative();
-      left: 50%;
-      margin-left: -200px;
-    }
-  }
-}
 .display-none{
   display: none;
-}
-#wrapper{
-  #content{
-    #search-form{
-      input{
-        margin-top: 0.2em;
-      }
-    }
-  }
 }
 #wrapper{
   #content{

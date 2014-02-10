@@ -18,9 +18,8 @@
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
 
-        <mapping class="com.springapp.mvc.mvc.model.User"/>
+        <mapping class="com.springapp.mvc.mvc.model.Patient"/>
         <mapping class="com.springapp.mvc.mvc.model.Employer"/>
-        <mapping class="com.springapp.mvc.mvc.model.Contact"/>
     </session-factory>
 
 </hibernate-configuration>

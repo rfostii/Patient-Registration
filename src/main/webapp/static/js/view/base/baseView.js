@@ -11,17 +11,12 @@ define([
         },
 
         attachEvents: function() {
-            this.$el.on('click', '.remove', $.proxy( this.delete, this ));
             this.$el.on('click', $.proxy( this.click, this ));
         },
 
-        click: function() {
+        click: function(evt) {
+            evt.stopPropagation();
             this.model.collection.trigger('selectItem', this.model);
-        },
-
-        delete: function() {
-            this.model.destroy();
-            this.remove();
         },
 
         backlightRender: function(query) {

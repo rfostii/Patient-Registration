@@ -51,6 +51,18 @@ public class EmployerRepository {
         return employer;
     }
 
+    public List<Employer> findAll() {
+        List<Employer> employers = null;
+        Session session = SessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            employers = (List<Employer>) session.createCriteria(Employer.class).setMaxResults(50).list();
+        } catch (RuntimeException e) {
+            System.out.println("Error" + e);
+        }
+        session.close();
+        return employers;
+    }
+
     public List<Employer> findByQuery(String query) {
         String isDigit = "\\d+";
         String containDigit = ".*\\d.*";
@@ -59,11 +71,11 @@ public class EmployerRepository {
         Session session = SessionFactoryUtil.getSessionFactory().openSession();
 
         if (query.matches(isDigit)) {
-            sql.append("select * from Employer as employer, Contact as contact where address_id=contact.id and (" +
-                    "phoneNumber similar to :searchKey or zip similar to :searchKey)");
+            sql.append("select * from employer where" +
+                    " phoneNumber similar to :searchKey or zip similar to :searchKey");
         } else {
-            sql.append("select * from Employer as employer, Contact as contact where address_id=contact.id and (" +
-                    "name similar to :searchKey or address similar to :searchKey or city similar to :searchKey)");
+            sql.append("select * from employer where" +
+                    " name similar to :searchKey or address similar to :searchKey or city similar to :searchKey");
         }
 
         try {
@@ -74,18 +86,6 @@ public class EmployerRepository {
             System.out.println("Error " + e);
         }
 
-        session.close();
-        return employers;
-    }
-
-    public List<Employer> findAll() {
-        List<Employer> employers = null;
-        Session session = SessionFactoryUtil.getSessionFactory().openSession();
-        try {
-            employers = (List<Employer>) session.createCriteria(Employer.class).setMaxResults(50).list();
-        } catch (RuntimeException e) {
-            System.out.println("Error" + e);
-        }
         session.close();
         return employers;
     }

@@ -15,6 +15,8 @@ define([
             this.error = [];
         },
 
+        renderData: function() {},
+
         saveSucces: function() {
             $('.alert-success').fadeIn().fadeOut(2000);
         },
@@ -27,8 +29,15 @@ define([
             this.$el.off().on('click', '.save-model', $.proxy( this.saveModel, this ));
         },
 
+        saveModel: function() {},
+
+        attachMask: function() {
+            this.$el.find("input[name=phoneNumber]").mask('(000) 000-0000');
+            this.$el.find("input[name=zip]").mask('00000');
+        },
+
         validationBeforeSend: function(data) {
-            this.hideError().validation(data).showError();
+            this.hideError().validationForm(data).showError();
 
             if (this.error.length) {
                 this.saveError();
@@ -45,7 +54,7 @@ define([
             });
         },
 
-        validation: function() {
+        validationForm: function() {
             throw 'Must be implemented!';
         },
 

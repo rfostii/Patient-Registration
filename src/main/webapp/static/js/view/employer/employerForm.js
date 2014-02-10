@@ -7,10 +7,6 @@ define([
 ], function($, _, Backbone, BaseFormView, tpl) {
     var EmployerFormView = BaseFormView.extend({
 
-        attachEvents: function() {
-            EmployerFormView.__super__.attachEvents.apply(this);
-        },
-
         saveModel: function() {
             var self = this;
 
@@ -21,41 +17,39 @@ define([
 
                 if (isValid) {
                     self.save(data);
-                    window.Collections.employer.set([self.model], {remove: false});
-                    Backbone.history.navigate('employers', {trigger: true});
+                    window.App.Collections.employer.set([self.model], {remove: false});
+                    Backbone.history.navigate("/", {trigger: true});
                 }
             });
         },
 
-        validation: function(attributes) {
+        validationForm: function(attributes) {
             if (!attributes.name.length || /(.*\d+.*)/.test(attributes.name)) {
                 this.error.push({name: 'name', message: 'Wrong Name'})
+            }
+            if (attributes.address.length < 10) {
+                this.error.push({name: 'address', message: 'Wrong Address'})
+            }
+            if (!attributes.city.length || /(.*\d+.*)/.test(attributes.city)) {
+                this.error.push({name: 'city', message: 'Wrong city Name'})
+            }
+            if (!attributes.state.length || /(.*\d+.*)/.test(attributes.state)) {
+                this.error.push({name: 'state', message: 'Wrong State'})
+            }
+            if (!attributes.phoneNumber.length) {
+                this.error.push({name: 'phoneNumber', message: 'Wrong Phone Number'})
             }
             return this;
         },
 
         setForm: function() {
-            this.$el.html($.parseHTML(tpl)).hide();
             this.render();
             this.attachEvents();
-        },
-
-        renderData: function() {
-            this.$el.find('form').html(this.template.render({
-                data: this.model.toJSON(),
-                contacts: window.Collections.contact.toJSON()
-            })).parent().show();
+            this.attachMask();
         },
 
         render: function () {
-            var self = this;
-
-            this.template = jsviews.templates(tpl);
-
-            window.Collections.contact.length ? this.renderData() :
-            window.Collections.contact.fetch({
-                success: self.renderData
-            });
+            this.$el.html($.parseHTML(tpl));
         }
 
     });
