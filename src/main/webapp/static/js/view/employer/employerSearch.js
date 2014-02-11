@@ -3,13 +3,14 @@ define([
     'underscore',
     'backbone',
     'view/base/baseSearchView',
-    'view/employer/employer'
-], function($, _, Backbone, BaseSearchView, EmployerView) {
+    'view/employer/employer',
+    'collection/employer'
+], function($, _, Backbone, BaseSearchView, EmployerView, EmployerCollection) {
     var EmployerSearchView = BaseSearchView.extend({
 
         initialize: function() {
             EmployerSearchView.__super__.initialize.apply(this);
-            this.searchResult = window.App.Collections.employer;
+            this.searchResult = new EmployerCollection();
             this.attachEvents();
         },
 

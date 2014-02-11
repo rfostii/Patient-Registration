@@ -1,8 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'model/baseModel'
-], function($, _, BaseModel){
+    'model/baseModel',
+    'model/employer'
+], function($, _, BaseModel, EmployerModel){
     var Patient = BaseModel.extend({
         urlRoot: '/api/patient/',
         defaults: {
@@ -29,9 +30,17 @@ define([
         },
 
         change: function() {
-            this.set({
-                employer: window.App.Collections.employer.get(this.get('employer'))
-            });
+            var self= this;
+
+            if (typeof this.get('employer') === 'object') return false;
+
+            var employer = new EmployerModel({ id: this.get('employer') });
+            employer.fetch({
+                success: function(model) {
+                    self.set({ employer: model.toJSON() }, { silent: true });
+                },
+                async: false
+            })
         }
     });
 

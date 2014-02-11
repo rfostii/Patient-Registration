@@ -18,6 +18,9 @@
             <div class="alert alert-danger display-none absolute">
                 <strong>Oops! Something wrong, please check entered data</strong>
             </div>
+            <div class="page-header">
+                <h1>Patient Registration</h1>
+            </div>
             <div id="content"></div>
         </div>
         <script type="text/javascript" data-main="<c:url value="/static/js/main.js"/>" src="<c:url value="/static/frameworks/requirejs.js"/>"></script>

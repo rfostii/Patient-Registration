@@ -14,31 +14,37 @@ import com.springapp.mvc.mvc.model.PatientRepository;
 public class PatientController {
 
     @Inject
-    private PatientRepository userRepository;
+    private PatientRepository patientRepository;
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json") @ResponseBody
     public List<Patient> findAll() {
-        return userRepository.findAll();
+        return patientRepository.findAll();
     }
 
-    @RequestMapping(value = "{query}",method = RequestMethod.GET ) @ResponseBody
+    @RequestMapping(value = "/search/{query}",method = RequestMethod.GET ) @ResponseBody
 
-    public final List<Patient> get(@PathVariable("query") final String query){
-        return this.userRepository.findByQuery(query);
+    public final List<Patient> search(@PathVariable("query") final String query){
+        return this.patientRepository.findByQuery(query);
+    }
+
+    @RequestMapping(value = "{id}",method = RequestMethod.GET ) @ResponseBody
+
+    public final Patient get(@PathVariable("id") final String id){
+        return this.patientRepository.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json") @ResponseStatus(HttpStatus.CREATED) @ResponseBody
     public Patient create(@RequestBody Patient patient) {
-        return userRepository.create(patient);
+        return patientRepository.create(patient);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT) @ResponseStatus(HttpStatus.OK) @ResponseBody
     public Patient update(@RequestBody Patient patient, @PathVariable String id) {
-        return userRepository.update(patient);
+        return patientRepository.update(patient);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE) @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
-        userRepository.remove(id);
+        patientRepository.remove(id);
     }
 }

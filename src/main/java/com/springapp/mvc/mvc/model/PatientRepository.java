@@ -52,6 +52,17 @@ public class PatientRepository {
         return patient;
     }
 
+    public Patient findById(String id) {
+        Patient patient = null;
+        Session session = SessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            patient = (Patient) session.get(Patient.class, Long.parseLong(id));
+        } catch (RuntimeException e) {
+            System.out.println("Error" + e);
+        }
+        return patient;
+    }
+
     public List<Patient> findByQuery(String query) {
         String isDigit = "\\d+";
         List<Patient> patients = null;

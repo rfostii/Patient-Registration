@@ -2,15 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'collection/patient',
-    'collection/employer',
     'view/patient/patientSearch',
     'view/patient/patientForm',
     'view/employer/employerForm',
     'view/patient/patientDetail',
     'model/patient',
     'model/employer'
-], function($, _, Backbone, PatientCollection, EmployerCollection, PatientSearchView,
+], function($, _, Backbone, PatientSearchView,
             PatientFormView, EmployerFormView, PatientDetailView, PatientModel, EmployerModel) {
 
     var Router = Backbone.Router.extend({
@@ -23,19 +21,18 @@ define([
             "addEmployer": "addEmployer"
         },
 
-        initialize: function() {
-            window.App.Collections.patient = new PatientCollection();
-            window.App.Collections.employer = new EmployerCollection();
-        },
-
         addPatient: function() {
-            this.patientForm = new PatientFormView({ model: new PatientModel() });
-            this.patientForm.setForm();
+            new PatientFormView({ model: new PatientModel() }).setForm();
         },
 
         editPatient: function(id) {
-            this.patientForm = new PatientFormView({ model: window.App.Collections.patient.get(id) });
-            this.patientForm.setForm();
+            new PatientModel({ id : id}).fetch({
+                success: function(model) {
+                    new PatientFormView({
+                        model: model
+                    }).setForm();
+                }
+            }, {silent: true});
         },
 
         showSearchForm: function() {
@@ -43,14 +40,17 @@ define([
         },
 
         addEmployer: function() {
-            this.employerForm = new EmployerFormView({ model: new EmployerModel() });
-            this.employerForm.setForm();
+            new EmployerFormView({ model: new EmployerModel() }).setForm();
         },
 
         showPatient: function(id) {
-            new PatientDetailView({
-                model: window.App.Collections.patient.get(id)
-            }).render();
+            new PatientModel({ id : id}).fetch({
+                success: function(model) {
+                    new PatientDetailView({
+                        model: model
+                    }).render();
+                }
+            }, {silent: true});
         }
     });
 

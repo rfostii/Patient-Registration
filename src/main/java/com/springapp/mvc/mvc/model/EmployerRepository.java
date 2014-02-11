@@ -51,6 +51,17 @@ public class EmployerRepository {
         return employer;
     }
 
+    public Employer findById(String id) {
+        Employer employer = null;
+        Session session = SessionFactoryUtil.getSessionFactory().openSession();
+        try {
+            employer = (Employer) session.get(Employer.class, Long.parseLong(id));
+        } catch (RuntimeException e) {
+            System.out.println("Error" + e);
+        }
+        return employer;
+    }
+
     public List<Employer> findAll() {
         List<Employer> employers = null;
         Session session = SessionFactoryUtil.getSessionFactory().openSession();

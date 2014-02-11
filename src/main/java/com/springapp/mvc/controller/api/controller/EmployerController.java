@@ -23,10 +23,16 @@ public class EmployerController {
         return employerRepository.findAll();
     }
 
-    @RequestMapping(value = "{query}",method = RequestMethod.GET ) @ResponseBody
+    @RequestMapping(value = "/search/{query}",method = RequestMethod.GET ) @ResponseBody
 
-    public final List<Employer> get(@PathVariable("query") final String query){
+    public final List<Employer> search(@PathVariable("query") final String query){
         return this.employerRepository.findByQuery(query);
+    }
+
+    @RequestMapping(value = "{id}",method = RequestMethod.GET ) @ResponseBody
+
+    public final Employer get( @PathVariable( "id" ) final String id ){
+        return this.employerRepository.findById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json", produces = "application/json") @ResponseStatus(HttpStatus.CREATED) @ResponseBody

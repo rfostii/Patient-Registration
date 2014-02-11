@@ -30,7 +30,7 @@ define([
             var self = this;
 
             this.searchResult.fetch({
-                url: [this.searchResult.url, query].join(''),
+                url: [this.searchResult.url, 'search/', query].join(''),
                 success: function() {
                     self.showSearchResult.call(self, query);
                     self.$('.loading-indicator').hide();

@@ -4,14 +4,14 @@ define([
     'backbone',
     'view/base/baseSearchView',
     'view/patient/patient',
-    'text!templates/search.jsp',
-    'text!templates/patientDetail.jsp'
-], function($, _, Backbone, BaseSearchView, PatientView, tpl) {
+    'collection/patient',
+    'text!templates/search.jsp'
+], function($, _, Backbone, BaseSearchView, PatientView, PatientCollection, tpl) {
     var PatientSearchView = BaseSearchView.extend({
 
         initialize: function() {
             PatientSearchView.__super__.initialize.apply(this);
-            this.searchResult = window.App.Collections.patient;
+            this.searchResult = new PatientCollection();
         },
 
         render: function() {

@@ -13,11 +13,9 @@ define([
             this.$el.find('form').off().submit(function(evt) {
                 evt.preventDefault();
                 var data = $(this).serializeJSON();
-                var isValid = self.validationBeforeSend(data);
 
-                if (isValid) {
+                if (self.validationBeforeSend(data)) {
                     self.save(data);
-                    window.App.Collections.employer.set([self.model], {remove: false});
                     Backbone.history.navigate("/", {trigger: true});
                 }
             });
