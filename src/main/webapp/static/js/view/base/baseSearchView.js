@@ -22,7 +22,7 @@ define([
         render: function() {},
 
         hideSearchResult: function() {
-            this.$el.find('#modal').hide();
+            this.$el.find('#modal').hide(500);
             this.$el.find(".search-result").html('').hide();
         },
 

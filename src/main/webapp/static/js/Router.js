@@ -21,6 +21,14 @@ define([
             "addEmployer": "addEmployer"
         },
 
+        initialize: function() {
+            this.unbind().bind("route",function() {
+                $('#content').animate({'left': '-20em'}, 10)
+                             .animate({'left': '5em'}, 800)
+                             .animate({'left': '-1em'}, 400);
+            });
+        },
+
         addPatient: function() {
             new PatientFormView({ model: new PatientModel() }).setForm();
         },
