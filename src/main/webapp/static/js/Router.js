@@ -6,10 +6,11 @@ define([
     'view/patient/patientForm',
     'view/employer/employerForm',
     'view/patient/patientDetail',
+    'view/alertMessageView',
     'model/patient',
     'model/employer'
 ], function($, _, Backbone, PatientSearchView,
-            PatientFormView, EmployerFormView, PatientDetailView, PatientModel, EmployerModel) {
+            PatientFormView, EmployerFormView, PatientDetailView, AlertMessageView, PatientModel, EmployerModel) {
 
     var Router = Backbone.Router.extend({
         routes: {
@@ -22,6 +23,8 @@ define([
         },
 
         initialize: function() {
+            this.alertMessage = new AlertMessageView();
+
             this.bind("route",function() {
                 $('#content').animate({'left': '-20em'}, 10)
                              .animate({'left': '5em'}, 800)
@@ -39,7 +42,8 @@ define([
                     new PatientFormView({
                         model: model
                     }).setForm();
-                }
+                },
+                error: this.alertMessage.showError
             }, {silent: true});
         },
 
@@ -57,7 +61,8 @@ define([
                     new PatientDetailView({
                         model: model
                     }).render();
-                }
+                },
+                error: this.alertMessage.showError
             }, {silent: true});
         }
     });

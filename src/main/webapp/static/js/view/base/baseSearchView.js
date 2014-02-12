@@ -1,12 +1,14 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone) {
+    'backbone',
+    'view/alertMessageView'
+], function($, _, Backbone, AlertMessageView) {
     var BaseSearchView = Backbone.View.extend({
         el: $('#content'),
 
         initialize: function() {
+            this.alertMessage = new AlertMessageView();
             this.render = _.bind( this.render, this );
             this.getData = _.bind( this.getData, this );
         },
@@ -34,6 +36,10 @@ define([
                 success: function() {
                     self.showSearchResult.call(self, query);
                     self.$('.loading-indicator').hide();
+                },
+                error: function() {
+                    self.$('.loading-indicator').hide();
+                    self.alertMessage.showError();
                 }
             });
         },

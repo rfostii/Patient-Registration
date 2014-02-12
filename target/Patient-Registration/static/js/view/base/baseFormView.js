@@ -1,13 +1,15 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone) {
+    'backbone',
+    'view/alertMessageView'
+], function($, _, Backbone, AlertMessageView) {
     var BaseFormView = Backbone.View.extend({
         el: $("#content"),
 
         initialize: function() {
             this.error = [];
+            this.alertMessage = new AlertMessageView();
             this.renderData = _.bind(this.renderData, this);
         },
 
@@ -16,14 +18,6 @@ define([
         },
 
         renderData: function() {},
-
-        saveSucces: function() {
-            $('.alert-success').fadeIn().fadeOut(2000);
-        },
-
-        saveError: function() {
-            $('.alert-danger').fadeIn().fadeOut(2000);
-        },
 
         attachEvents: function() {
             this.$el.off().on('click', '.save-model', $.proxy( this.saveModel, this ));
@@ -40,7 +34,7 @@ define([
             this.hideError().validationForm(data).showError();
 
             if (this.error.length) {
-                this.saveError();
+                this.alertMessage.showError();
                 this.clearError();
                 return false;
             }
@@ -49,8 +43,8 @@ define([
 
         save: function(data) {
             this.model.save(data, {
-                success: this.saveSucces,
-                error: this.saveError
+                success: this.alertMessage.showSuccess,
+                error: this.alertMessage.showError
             });
         },
 

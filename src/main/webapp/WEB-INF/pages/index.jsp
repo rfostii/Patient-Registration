@@ -13,12 +13,7 @@
     </head>
     <body>
         <div id="wrapper">
-            <div class="alert alert-success display-none absolute">
-                <strong>Saved!</strong>
-            </div>
-            <div class="alert alert-danger display-none absolute">
-                <strong>Oops! Something wrong, please check entered data</strong>
-            </div>
+            <div id="alert-messages"></div>
             <div class="page-header">
                 <h1>Patient Registration</h1>
             </div>
