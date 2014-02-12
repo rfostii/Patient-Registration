@@ -4,9 +4,8 @@ define([
     'backbone',
     'view/base/baseFormView',
     'view/employer/employerSearch',
-    'model/employer',
     'text!templates/patientForm.jsp'
-], function($, _, Backbone, BaseFormView, EmployerSearchView, EmployerModel, tpl) {
+], function($, _, Backbone, BaseFormView, EmployerSearchView, tpl) {
     var PatientFormView = BaseFormView.extend({
 
         saveModel: function() {
@@ -20,13 +19,13 @@ define([
                     self.save(data);
                     Backbone.history.navigate("/", {trigger: true});
                 }
-                return false;
             });
         },
 
         setForm: function() {
             this.$el.html($.parseHTML(tpl)).hide();
             this.render();
+            this.attachMask();
             this.attachEvents();
             new EmployerSearchView().render();
         },
@@ -65,7 +64,6 @@ define([
         render: function() {
             this.template = jsviews.templates(tpl);
             this.$el.find('form').html(this.template.render( this.model.toJSON() )).parent().show();
-            this.attachMask();
         }
 
     });

@@ -22,7 +22,7 @@ define([
         },
 
         initialize: function() {
-            this.unbind().bind("route",function() {
+            this.bind("route",function() {
                 $('#content').animate({'left': '-20em'}, 10)
                              .animate({'left': '5em'}, 800)
                              .animate({'left': '-1em'}, 400);

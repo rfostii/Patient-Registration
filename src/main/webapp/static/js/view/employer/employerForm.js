@@ -16,7 +16,7 @@ define([
 
                 if (self.validationBeforeSend(data)) {
                     self.save(data);
-                    Backbone.history.navigate("/", {trigger: true});
+                    window.history.back();
                 }
             });
         },

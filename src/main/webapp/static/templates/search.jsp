@@ -5,7 +5,7 @@
     <div class="form-group">
         <input type="text" class="form-control search-field" placeholder="Search" value="">
     </div>
-    <table class="search-result table"></table>
+    <table class="search-result table table-striped table-hover"></table>
 </form>
 <div class="clear"></div>
 <div class="display-none" id="new-patient">
