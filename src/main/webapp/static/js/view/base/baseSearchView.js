@@ -8,6 +8,7 @@ define([
         el: $('#content'),
 
         initialize: function() {
+            this.searching = false;
             this.alertMessage = new AlertMessageView();
             this.render = _.bind( this.render, this );
             this.getData = _.bind( this.getData, this );
@@ -36,10 +37,12 @@ define([
                 success: function() {
                     self.showSearchResult.call(self, query);
                     self.$('.loading-indicator').hide();
+                    self.searching = false;
                 },
                 error: function() {
                     self.$('.loading-indicator').hide();
                     self.alertMessage.showError();
+                    self.searching = false;
                 }
             });
         },
@@ -50,8 +53,9 @@ define([
 
             this.$el.find(".search-result").html('').hide();
 
-            if (query.length < 3) return false;
+            if (query.length < 3 || this.searching) return false;
 
+            self.searching = true;
             this.$('.loading-indicator').show();
             setTimeout(function() {
                 self.getData(query);

@@ -26,9 +26,9 @@ define([
             this.alertMessage = new AlertMessageView();
 
             this.bind("route",function() {
-                $('#content').animate({'left': '-20em'}, 10)
-                             .animate({'left': '5em'}, 800)
-                             .animate({'left': '-1em'}, 400);
+                $('#content').animate({left: '-20em'}, 10)
+                             .animate({left: '5em'}, 800)
+                             .animate({left: '-1em'}, 400);
             });
         },
 
