@@ -8,6 +8,7 @@ require.config({
         mask: '../frameworks/mask',
         less: '../frameworks/less',
         bootstrap: '../frameworks/bootstrap/dist/js/bootstrap',
+        datepicker: '../frameworks/datepicker/js/bootstrap-datepicker',
         jqueryJson: '../frameworks/jqueryJson',
         templates: '../templates'
     },
@@ -23,6 +24,10 @@ require.config({
             deps: ["jquery"],
             exports: "bootstrap"
         },
+        datepicker: {
+            deps: ["jquery"],
+            exports: "datepicker"
+        },
         mask: {
             deps: ["jquery"]
         },
@@ -35,6 +40,7 @@ require.config({
 require([
     'app',
     'bootstrap',
+    'datepicker',
     'jsrender',
     'jqueryJson',
     'less',

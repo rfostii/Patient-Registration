@@ -32,8 +32,8 @@ define([
         saveModel: function() {},
 
         attachMask: function() {
-            this.$el.find("input[name=phoneNumber]").mask('(000) 000-0000');
-            this.$el.find("input[name=zip]").mask('00000');
+            this.$el.find("input[name=phoneNumber]").inputmask("mask", {"mask": "(999) 999-9999"});
+            this.$el.find("input[name=zip]").inputmask("mask", {"mask": "99999"});
         },
 
         validationBeforeSend: function(data) {

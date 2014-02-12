@@ -25,7 +25,7 @@
         <label for="dateBirth" id="dateBirth" class="col-sm-2 control-label">Date Birth</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="date" name="dateBirth" class="form-control" placeholder="Date Birth" value="{{if dateBirth}}{{>dateBirth}}{{/if}}">
+            <input type="text" name="dateBirth" data-date-format="yyyy-mm-dd" class="form-control" placeholder="Date Birth" value="{{if dateBirth}}{{>dateBirth}}{{/if}}">
         </div>
     </div>
     <div class="form-group gender">

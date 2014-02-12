@@ -22,10 +22,15 @@ define([
             });
         },
 
+        attachDatePicker: function() {
+            this.$('input[name=dateBirth]').datepicker();
+        },
+
         setForm: function() {
             this.$el.html($.parseHTML(tpl)).hide();
             this.render();
             this.attachMask();
+            this.attachDatePicker();
             this.attachEvents();
             new EmployerSearchView().render();
         },

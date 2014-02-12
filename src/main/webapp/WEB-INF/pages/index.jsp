@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap.min.css"/>">
         <link rel="stylesheet" href="<c:url value="/static/frameworks/bootstrap/dist/css/bootstrap-theme.min.css"/>">
+        <link rel="stylesheet" href="<c:url value="/static/frameworks/datepicker/css/datepicker.css"/>">
         <link rel="stylesheet/less" type="text/css" href="<c:url value="/static/style/style.less"/>">
     </head>
     <body>
