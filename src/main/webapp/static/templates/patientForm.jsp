@@ -4,14 +4,16 @@
         <label for="firstName" id="firstName" class="col-sm-2 control-label">First Name</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="firstName" class="form-control" placeholder="First Name" value="{{if firstName}}{{>firstName}}{{/if}}">
+            <input type="text" name="firstName" class="form-control"
+                   placeholder="First Name" value="{{if firstName}}{{>firstName}}{{/if}}">
         </div>
     </div>
     <div class="form-group lastName">
         <label for="lastName" id="lastName" class="col-sm-2 control-label">Last Name</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="{{if lastName}}{{>lastName}}{{/if}}">
+            <input type="text" name="lastName" class="form-control"
+                   placeholder="Last Name" value="{{if lastName}}{{>lastName}}{{/if}}">
         </div>
     </div>
     <div class="form-group ssn">
@@ -25,7 +27,8 @@
         <label for="dateBirth" id="dateBirth" class="col-sm-2 control-label">Date Birth</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="dateBirth" data-date-format="yyyy-mm-dd" class="form-control" placeholder="Date Birth" value="{{if dateBirth}}{{>dateBirth}}{{/if}}">
+            <input type="text" name="dateBirth" data-date-format="yyyy-mm-dd" class="form-control"
+                   placeholder="Date Birth" value="{{if dateBirth}}{{>dateBirth}}{{/if}}">
         </div>
     </div>
     <div class="form-group gender">
@@ -79,14 +82,16 @@
         <label for="language" id="language" class="col-sm-2 control-label">Language</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="language" class="form-control" placeholder="Language" value="{{if language}}{{>language}}{{/if}}">
+            <input type="text" name="language" class="form-control"
+                   placeholder="Language" value="{{if language}}{{>language}}{{/if}}">
         </div>
     </div>
     <div class="form-group address">
         <label for="address" id="address" class="col-sm-2 control-label">Address</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="address" class="form-control" placeholder="Address" value="{{if address}}{{>address}}{{/if}}">
+            <input type="text" name="address" class="form-control"
+                   placeholder="Address" value="{{if address}}{{>address}}{{/if}}">
         </div>
     </div>
     <div class="form-group city">
@@ -114,7 +119,8 @@
         <label for="phone-number" id="phone-number" class="col-sm-2 control-label">Phone Number</label>
         <div class="col-sm-8">
             <div class="help-block error"></div>
-            <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number" value="{{if phoneNumber}}{{>phoneNumber}}{{/if}}">
+            <input type="text" name="phoneNumber" class="form-control"
+                   placeholder="Phone Number" value="{{if phoneNumber}}{{>phoneNumber}}{{/if}}">
         </div>
     </div>
     <div class="form-group employer">
@@ -122,8 +128,10 @@
         <div class="col-sm-8">
             <div class="help-block error"></div>
             <input type="hidden" name="employer" value="{{if employer}}{{>employer.id}}{{/if}}">
-            <img alt="Loading..." width="50" class="navbar-right display-none loading-indicator" src="<c:url value="/static/img/loading-indicator.gif"/>">
-            <input type="text" class="form-control search-field" placeholder="Type Employer Name" value="{{if employer}}{{>employer.name}}{{/if}}">
+            <img alt="Loading..." width="50"
+                 class="navbar-right display-none loading-indicator" src="<c:url value="/static/img/loading-indicator.gif"/>">
+            <input type="text" class="form-control search-field"
+                   placeholder="Type Employer Name" value="{{if employer}}{{>employer.name}}{{/if}}">
             <table class="search-result table"></table>
             <div class="clear"></div>
             <div class="display-none" id="new-employer">
