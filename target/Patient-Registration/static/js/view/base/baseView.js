@@ -14,10 +14,7 @@ define([
             this.$el.on('click', $.proxy( this.click, this ));
         },
 
-        click: function(evt) {
-            evt.stopPropagation();
-            this.model.collection.trigger('selectItem', this.model);
-        },
+        click: function() {},
 
         backlightRender: function(query) {
             var markedData = JSON.stringify(this.model.toJSON());

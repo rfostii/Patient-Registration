@@ -9,8 +9,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import com.springapp.mvc.mvc.model.EmployerRepository;
 
-import javax.inject.Inject;
-
 
 @Controller @RequestMapping("/api/employer")
 public class EmployerController {

@@ -1,24 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<td>{{:firstName}}</td>
-<td>{{:lastName}}</td>
-<td>{{:ssn}}</td>
-<td>{{:dateBirth}}</td>
-<td>{{:gender}}</td>
-<td>{{:maritalStatus}}</td>
-<td>{{:race}}</td>
-<td>{{:religion}}</td>
-<td>{{:language}}</td>
-<td>{{:address}}</td>
-<td>{{:city}}</td>
-<td>{{:stage}}</td>
-<td>{{:zip}}</td>
-<td>{{:phoneNumber}}</td>
-<td>{{:employer.name}}</td>
 <td>
-    <a href="#editPatient/{{>id}}" class="edit">
-        <img alt="edit" src="<c:url value="/static/img/edit.png"/>">
-    </a>
-    <a href="#patient/{{>id}}" class="edit">
-        <img alt="edit" width="20" src="<c:url value="/static/img/detail.png"/>">
-    </a>
+    <div class="panel panel-default">
+        <div class="panel-heading">{{:firstName}}  {{:lastName}}</div>
+        <div class="panel-body">
+            <strong>SSN</strong><p>{{:ssn}}</p>
+            <strong>Date Birth</strong><p>{{:dateBirth}}</p>
+            <strong>Gender</strong><p>{{:gender}}</p>
+            <strong>Marital Status</strong><p>{{:maritalStatus}}</p>
+            <strong>Religion</strong><p>{{:religion}}</p>
+            <strong>Language</strong><p>{{:language}}</p>
+            <strong>Address</strong><p>{{:address}}</p>
+            <strong>City</strong><p>{{:city}}</p>
+            <strong>State</strong><p>{{:state}}</p>
+            <strong>Phone Number</strong><p>{{:phoneNumber}}</p>
+            <strong>Employer</strong><p>{{:employer.name}}</p>
+        </div>
+    </div>
 </td>
+
+

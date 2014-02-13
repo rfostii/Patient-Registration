@@ -26,6 +26,8 @@ define([
             this.alertMessage = new AlertMessageView();
 
             this.bind("route",function() {
+                $('.page-header').animate({left: '-8em', opacity: '0'}, 0)
+                                 .animate({left: '0em', opacity: '1'}, 800);
                 $('#content').animate({left: '-20em', opacity: '0'}, 0)
                              .animate({left: '5em', opacity: '1'}, 800)
                              .animate({left: '-1em'}, 400);
