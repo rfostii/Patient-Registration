@@ -1,8 +1,9 @@
 @red: #cb0000;
-@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@gray: #ccc;
+@font-family:   Verdana;
 
 body{
-  font-family: @font-family-monospace;
+  font-family: @font-family;
 }
 .pointer{
   cursor: pointer;
@@ -24,8 +25,8 @@ body{
 .clear{
   clear: both;
 }
-.font12{
-  font-size: 12px;
+.font16{
+  font-size: 16px;
 }
 .left{
   float: left;
@@ -35,6 +36,9 @@ body{
 }
 .error{
   color: @red;
+}
+.gray{
+  color: @gray;
 }
 #wrapper{
   #content{
@@ -94,16 +98,12 @@ body{
 }
 #content{
   .search-result{
-    tr{
-      &:hover{
-        background: #ccc;
-      }
-    }
+    z-index: 1000;
     .absolute();
     .display-none();
     margin-bottom: 10px;
-    width:100em;
-    .font12();
+    width:50em;
+    .font16();
     max-height: 20em;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     overflow: auto;

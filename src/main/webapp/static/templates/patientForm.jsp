@@ -132,7 +132,7 @@
                  class="navbar-right display-none loading-indicator" src="<c:url value="/static/img/loading-indicator.gif"/>">
             <input type="text" class="form-control search-field"
                    placeholder="Type Employer Name" value="{{if employer}}{{>employer.name}}{{/if}}">
-            <table class="search-result table"></table>
+            <table class="search-result table table-striped table-hover"></table>
             <div class="clear"></div>
             <div class="display-none" id="new-employer">
                 <div class="alert alert-info">
