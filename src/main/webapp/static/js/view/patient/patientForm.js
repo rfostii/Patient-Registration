@@ -27,7 +27,6 @@ define([
         },
 
         setForm: function() {
-            this.$el.html($.parseHTML(tpl)).hide();
             this.render();
             this.attachMask();
             this.attachDatePicker();
@@ -68,7 +67,7 @@ define([
 
         render: function() {
             this.template = jsviews.templates(tpl);
-            this.$el.find('form').html(this.template.render( this.model.toJSON() )).parent().show();
+            this.$el.html(this.template.render( this.model.toJSON() ));
         }
 
     });
