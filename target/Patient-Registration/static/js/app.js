@@ -4,7 +4,7 @@ define([
     'backbone',
     'Router'
 ], function($, _, Backbone, Router) {
-    (function(){
+    (function() {
         new Router();
         Backbone.history.start();
     })();
